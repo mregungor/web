@@ -1,8 +1,8 @@
 ## Welcome to GitHub Pages
 
-[Contents](/web/content/README.md)
+[Contents](content/)
 
-[Markdown_Language](/web/content/markDownLang/README.md)
+[Markdown_Language](content/markDownLang/)
 
 [About](about)
 <br>
