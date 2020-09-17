@@ -7,6 +7,22 @@
 [About](about)
 <br>
 <br>
+## <strong>Code:</strong>
+> Code block:
+```
+#include <stdio.h>
+
+int main()
+{
+    printf("Hello World");
+    return 0;
+}
+
+
+```
+
+<br>
+<br>
 For lorem ipsum generator: <br>
 https://www.lipsum.com/
 <br>
