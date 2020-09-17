@@ -4,3 +4,10 @@ remote_theme: rundocs/jekyll-rtd-theme
 title: Personal Site
 description: Personal Site 
 
+
+#---
+#date:   2020-04-15 15:19:23 -0700
+#categories: docs & info
+#---
+
+avatar: /_assets/img/favicon.ico

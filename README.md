@@ -1,5 +1,5 @@
 ## Welcome to GitHub Pages
 
-[Mark Down Language](content/markDownLang/index.md)
+[Markdown_Language](content/markDownLang/index.md)
 
 [About](about)
