@@ -11,3 +11,8 @@ description: Personal Site
 #---
 
 avatar: /_assets/img/favicon.ico
+theme_mode: dark
+
+
+
+plugins: [jekyll-avatar]
