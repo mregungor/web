@@ -1,6 +1,8 @@
 ## Welcome to GitHub Pages
-#
-#This is a test repository to test Github Pages
+<hr>
+<br>
+
+### This is a test repository to test Github Pages
 
 
 [Content Page](content/)
