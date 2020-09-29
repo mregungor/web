@@ -11,7 +11,7 @@
 <br>
 <br>
 ## <strong>Code:</strong>
-> Code block:
+> Code block:<br>
 ```
 #include <stdio.h>
 
