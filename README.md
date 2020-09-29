@@ -3,7 +3,7 @@
 #This is a test repository to test Github Pages
 
 
-[Contents](content/)
+[Content Page](content/)
 
 [Markdown_Language](content/markDownLang/)
 
