@@ -7,7 +7,8 @@
 <br>
 Other Sources: <br/>
 [Markdown Syntax (Mastering Markdown)](https://guides.github.com/features/mastering-markdown/)
-
+<br>
+[Markdown Guide](https://www.markdownguide.org/basic-syntax/)
 <br>
 
 ## Online Class Material
