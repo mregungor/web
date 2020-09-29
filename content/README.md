@@ -17,7 +17,7 @@ To be added later
 <br>
 
 ## Test Projects (Javascript)
-1. [RayTracing Example](prh/raytr/index.html) 
+1. [RayTracing Example](prj/raytr/index.html) 
 1. [Rasterization Example]()
 1. [A* Pathfinding Example]()
 1. [Neural Network Example]()
