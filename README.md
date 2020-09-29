@@ -26,7 +26,8 @@ int main()
 
 <br>
 [RayTracing Example](raytr/index.html)
-For Js raytracing example: 
+<br><br>
+<u>How to create Js RayTracing tutorial:</u> <br>
 [literate-raytracer](https://tmcw.github.io/literate-raytracer/)
 
 <br>
