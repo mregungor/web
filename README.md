@@ -24,7 +24,7 @@ int main()
 
 ```
 <br>
-[RayTracing Example!](raytr/index.html)
+[RayTracing Example](raytr/index.html)
 
 <br>
 <br>
