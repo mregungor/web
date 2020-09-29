@@ -12,6 +12,8 @@
 <br>
 ## <strong>Code:</strong>
 > Code block:<br>
+
+
 ```
 #include <stdio.h>
 
@@ -20,9 +22,8 @@ int main()
     printf("Hello World");
     return 0;
 }
-
-
 ```
+
 <br>
 [RayTracing Example](raytr/index.html)
 
