@@ -27,7 +27,7 @@ int main()
 ```
 
 <br>
-[RayTracing Example](content/raytr/index.html)
+[RayTracing Example](content/prj/raytr/index.html)
 <br><br>
 <u>How to create Js RayTracing tutorial:</u> <br>
 [literate-raytracer](https://tmcw.github.io/literate-raytracer/)
