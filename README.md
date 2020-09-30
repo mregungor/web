@@ -28,9 +28,9 @@ int main()
 }
 ```
 
-Another Code Block Style
+Another Code Block Style (jekyll inline_higlight plugin)
 
-{% highlight c %}
+{% highlight c linenos %}
 int main()
 {
     printf("Hello World");
