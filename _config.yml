@@ -15,4 +15,4 @@ description: Personal Site
 
 image: /_assets/img/favicon.ico
 
-plugins: [jekyll-avatar] [highlight-linedivs] [jekyll_inline_highlight]
+plugins: [jekyll-avatar] [highlight-linedivs]
