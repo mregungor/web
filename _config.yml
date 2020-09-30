@@ -22,10 +22,12 @@ kramdown:
   math_engine: mathjax
   syntax_highlighter: rouge
 
-  syntax_highlighter_opts:
+  syntax-highlighting:
       enabled : true
       css: /_sass/zenburn.css
 
+    
+  syntax_highlighter_opts:
       #Line Numbers
       span:
         line_numbers: false
