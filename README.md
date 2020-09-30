@@ -30,8 +30,12 @@ int main()
 
 Another Code Block Style
 
-{% highlight cpp %}
-[code]
+{% highlight c %}
+int main()
+{
+    printf("Hello World");
+    return 0;
+}
 {% endhighlight %}
 
 
