@@ -30,7 +30,7 @@ int main()
 
 Another Code Block Style (jekyll inline_higlight plugin)
 
-{% highlight c linenos %}
+{% highlight c linedivs %}
 int main()
 {
     printf("Hello World");
