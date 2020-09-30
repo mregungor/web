@@ -21,7 +21,7 @@ kramdown:
   syntax_highlighter: rouge
 
   syntax_highlighter_opts:
-      css_class: zenburn.css
+      css_class: /_sass/zenburn.css
 
       #Line Numbers
       span:
