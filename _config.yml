@@ -19,10 +19,12 @@ markdown: kramdown
 highlighter: rouge
 kramdown:
   input: GFM
+  math_engine: mathjax
   syntax_highlighter: rouge
 
   syntax_highlighter_opts:
-      css_class: '/_sass/zenburn'
+      enabled : true
+      css: /_sass/zenburn.css
 
       #Line Numbers
       span:
