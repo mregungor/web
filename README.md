@@ -28,6 +28,17 @@ int main()
 }
 ```
 
+Another Code Block Style
+
+{% highlight cpp %}
+[code]
+{% endhighlight %}
+
+
+
+<br>
+
+## Example 
 <br>
 [RayTracing Example](content/prj/raytr/index.html)
 <br><br>
