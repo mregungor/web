@@ -24,7 +24,7 @@ kramdown:
 
 syntax-highlighting:
     enabled : true
-    css: /_sass/zenburn.css
+    css: zenburn.css
 
     
 syntax_highlighter_opts:
