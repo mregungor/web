@@ -16,6 +16,7 @@ description: Personal Site
 image: /_assets/img/favicon.ico
 
 markdown: kramdown
+highlighter: rouge
 kramdown:
   input: GFM
   syntax_highlighter: rouge
