@@ -32,17 +32,13 @@ Another Code Block Style (jekyll inline_highlight plugin)
 
 {% highlight c linedivs %}
 
-<figure class="highlight">
-    <pre>
-        <code>
+figure.highlight pre code {
             int main()
             {
                 printf("Hello World");
                 return 0;
             }
-        </code>
-    </pre>
-</figure>
+}
 
 {% endhighlight %}
 
