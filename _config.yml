@@ -26,8 +26,7 @@ kramdown:
  math_engine: mathjax
 
 #syntax-highlighting
- syntax_highlighter_opts:
-  line_numbers: true
+# syntax_highlighter_opts:
 #  enabled : true
 #  css_class: 'highlight'
 #  css_class: /_sass/zenburn.css
