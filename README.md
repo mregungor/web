@@ -1,6 +1,4 @@
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/highlight.min.js"></script>
-<link rel="alternate stylesheet" title="Dark" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/styles/dark.min.css" enabled />
-
+<link rel=”stylesheet” type=”text/css” href=”/_sass/zenburn.css” />
 ## Welcome to GitHub Pages
 <hr>
 <br>
