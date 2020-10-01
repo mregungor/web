@@ -44,7 +44,15 @@ int main()
 {% endhighlight %}
 
 
+```note
+### This is a note
 
+Markdown is supported, Text can be **bold**, _italic_, or ~~strikethrough~~. [Links](https://github.com) should be blue with no underlines
+
+`inline code`
+
+[`inline code inside link`](#)
+```
 
 <br>
 
