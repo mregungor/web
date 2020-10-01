@@ -1,4 +1,3 @@
-<link rel=”stylesheet” type=”text/css” href=”/_sass/zenburn.css” />
 ## Welcome to GitHub Pages
 <hr>
 <br>
