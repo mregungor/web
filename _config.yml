@@ -26,7 +26,7 @@ kramdown:
 
  syntax_highlighter_opts:
   css_class: '_scss/zenburn'
-#  line_numbers: true
+  line_numbers: true
 #    #Line Numbers
 #  span:
 #    line_numbers: false
