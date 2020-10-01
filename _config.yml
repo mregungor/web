@@ -25,13 +25,13 @@ kramdown:
  syntax_highlighter: rouge
  math_engine: mathjax
 
- syntax_highlighter_opts:
-    #Line Numbers
-    span:
-      line_numbers: false
-    block:
-      line_numbers: true
-      start_line: 1
+# syntax_highlighter_opts:
+#    #Line Numbers
+#    span:
+#      line_numbers: false
+#    block:
+#      line_numbers: true
+#      start_line: 1
 
 
 #syntax-highlighting:
