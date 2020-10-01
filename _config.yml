@@ -25,8 +25,8 @@ kramdown:
  syntax_highlighter: rouge
  math_engine: mathjax
 
- syntax_highlighter_opts:
-  line_numbers: true
+# syntax_highlighter_opts:
+#  line_numbers: true
 #    #Line Numbers
 #    span:
 #      line_numbers: false
