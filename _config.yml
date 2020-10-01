@@ -21,7 +21,7 @@ highlighter: rouge
 kramdown:
  input: GFM
  auto_ids: true
-# hard_wrap: false
+ hard_wrap: false
  syntax_highlighter: rouge
  math_engine: mathjax
 
