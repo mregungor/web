@@ -30,13 +30,16 @@ int main()
 
 Another Code Block Style (jekyll inline_highlight plugin)
 
-{% highlight c %}
 
-            int main()
-            {
-                printf("Hello World");
-                return 0;
-            }
+{% highlight c linedivs %}
+<!--  -->
+
+int main()
+{
+    printf("Hello World");
+    return 0;
+}
+
 {% endhighlight %}
 
 
