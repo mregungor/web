@@ -53,20 +53,20 @@ Markdown is supported, Text can be **bold**, _italic_, or ~~strikethrough~~. [Li
 
 [`inline code inside link`](#)
 ```
-mermaid:
-  initialize:
-    startOnLoad: true
-    logLevel: fatal
-    flowchart:
-      diagramPadding: 8
-      htmlLabels: true
-      curve: linear
-    gantt:
-      titleTopMargin: 25
-    .
-    .
-    .
 
+```mermaid
+graph TB
+    c1-->a2
+    subgraph one
+    a1-->a2
+    end
+    subgraph two
+    b1-->b2
+    end
+    subgraph three
+    c1-->c2
+    end
+```
 
 
 
