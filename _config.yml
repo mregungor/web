@@ -16,6 +16,7 @@ description: Personal Site
 image: /_assets/img/favicon.ico
 
 markdown: kramdown
+highlighter: rouge
 
 kramdown:
  input: GFM
@@ -24,24 +25,18 @@ kramdown:
  syntax_highlighter: rouge
  math_engine: mathjax
 
+#syntax-highlighting
  syntax_highlighter_opts:
   enabled : true
   css_class: 'highlight'
 #  css_class: /_sass/zenburn.css
 #  line_numbers: true
 #    #Line Numbers
-#  span:
-#    line_numbers: false
-#  block:
-#    line_numbers: true
-#    start_line: 1
-
-
-#syntax-highlighting:
-#    enabled : true
-#    #css: /_sass/zenburn.css
-
-    
+  span:
+    line_numbers: false
+  block:
+    line_numbers: true
+    start_line: 1
 
 
 plugins: 
