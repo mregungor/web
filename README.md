@@ -1,12 +1,10 @@
-{% include list.liquid all=true %}
-
 ## Welcome to GitHub Pages
 <hr>
 <br>
 
 ### This is a test repository to test Github Pages
 
-
+{% include list.liquid all=true %}
 
 
 
