@@ -4,9 +4,10 @@ sort: 2
 ## Welcome to GitHub Pages
 <hr>
 <br>
-[1st](#welcome-to-github-pages)<br>
-[2nd](#code)<br>
-[3rd](#example)<br>
+[1st - Welcome](#welcome-to-github-pages)<br>
+[2nd - Code](#code)<br>
+[3rd - Example](#example)<br>
+[4th - Lorem Ipsum](#lorem-ipsum)<br>
 
 ### This is a test repository to test Github Pages
 
