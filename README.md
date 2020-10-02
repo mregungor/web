@@ -1,7 +1,10 @@
 ## Welcome to GitHub Pages
 <hr>
 <br>
-[create an anchor](#anchors-in-markdown)
+[1st](##welcome-to-github-pages)
+[2nd](##code)
+[3rd](##example)
+
 ### This is a test repository to test Github Pages
 
 {% include list.liquid all=true %}
@@ -72,7 +75,7 @@ graph TB
 
 
 <br>
-[create an anchor2](#anchors-in-markdown2)
+
 ## Example 
 <br>
 [RayTracing Example](content/prj/raytr/index.html)
