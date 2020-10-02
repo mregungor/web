@@ -44,8 +44,9 @@ google:
   adsense:
 # also available via file: _include/assets/custom.scss
 scss:
-
-# also available via file: _include/assets/custom.js
-script:
   .wy-nav-content-wrap{background:#fcfcfc}
   .wy-nav-content-wrap .wy-nav-content{max-width:none}
+  
+# also available via file: _include/assets/custom.js
+script:
+
