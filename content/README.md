@@ -18,6 +18,6 @@ To be added later
 
 ## Test Projects (Javascript)
 1. [RayTracing Example](prj/raytr/index.html) 
-1. [Rasterization Example](prj/rastr/README.md)
+1. [Rasterization Example](prj/rastr/index.html)
 1. [A* Pathfinding Example]()
 1. [Neural Network Example]()
