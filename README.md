@@ -6,7 +6,7 @@
 
 {% include list.liquid all=true %}
 
-
+<br>
 
 [Content Page](content/)
 
