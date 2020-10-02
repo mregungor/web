@@ -37,12 +37,30 @@
             <th><input type = "text"  id = "yNumber" /><br></th>
             </tr>
             <tr>
-            <th><button type="button" id="draw2" onclick="drawPixelArea()">Draw</button></th>            
+            <th><button type="button" id="draw2" onclick="drawPixelArea()">Draw Grid</button></th>            
             </tr>
         </table>
         </fieldset>
     </form>
 
+    <br>
+    <form action = "" style="width: max-width: text-align: left;">
+        <fieldset>
+            <label>Line position: x_0( </label> 
+            <input type = "text"  id = "x0" />
+            <label>),</label>   
+            <label></label>y_0( </label> 
+            <input type = "text"  id = "y0" />
+            <label>) ---- </label> 
+            <label></label>x_n( </label> 
+            <input type = "text"  id = "xn" />
+            <label>),</label> 
+            <label></label>y_n( </label> 
+            <input type = "text"  id = "yn" />
+            <label>) </label> <br>
+            <button type="button" id="draw2" onclick="drawLine()">DrawLine</button></th>
+        </fieldset>
+    </form>
 
     <!-- Line drawing Js Files -->
     <script src='rastrLDA.js'></script>

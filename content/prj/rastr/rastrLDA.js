@@ -92,3 +92,24 @@ function drawPixelArea()
         }
     }
 }
+
+
+
+function drawLine()
+{
+    var pixelSize = document.getElementById("pixelSize").value;
+    var x0 = document.getElementById("x0").value;
+    var y0 = document.getElementById("y0").value;
+    var xn = document.getElementById("xn").value;
+    var yn = document.getElementById("yn").value;
+
+
+    const ctx = canvas.getContext('2d');
+
+
+    ctx.beginPath();        // Start a new path
+    ctx.moveTo(x0*pixelSize, y0*pixelSize);     // Move the pen to (x0, y0)
+    ctx.lineTo(xn*pixelSize, yn*pixelSize);     // Draw a line to (xn, yn)
+    ctx.stroke();           // Render the path
+
+}
