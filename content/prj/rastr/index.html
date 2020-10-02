@@ -19,28 +19,27 @@
     <canvas id="canvas">   </canvas>
     <br/>    
 
-    <!--
-    <form action = "">
-        <fieldset>
-            <label>Enter x,y,size: </label>
-            <input type = "text" id = "rect_x" />
-            <input type = "text"  id = "rect_y" />
-            <input type = "text"  id = "rect_size" />
-            <button type="button" id="draw1" onclick="drawSquareFromInput()">Draw</button>
-        </fieldset>
-    </form>
-    <button type="button" id="draw" onclick="draw()">Draw</button>
-     -->
-
     <br>
     <p><strong><u>Enter Pixel Resolution:</strong></u></p>
-    <form action = "" style="width: 50%;">
+    <form action = "" style="width: max-content; text-align: left;">
         <fieldset>
-            <label>Enter Pixelsize, x, y Number: </label>
-            <input type = "text" id = "pixelSize" />
-            <input type = "text"  id = "xNumber" />
-            <input type = "text"  id = "yNumber" />
-            <button type="button" id="draw2" onclick="drawPixelArea()">Draw</button>
+        <table>
+            <tr>
+            <th><label>Enter Pixel size:  </label></th>
+            <th><input type = "text" id = "pixelSize" /><br></th>
+            </tr>
+            <tr>
+            <th><label>Row number (x):    </label></th>
+            <th><input type = "text"  id = "xNumber" /><br></th>
+            </tr>
+            <tr>
+            <th><label>Column number (y):  </label></th>
+            <th><input type = "text"  id = "yNumber" /><br></th>
+            </tr>
+            <tr>
+            <th><button type="button" id="draw2" onclick="drawPixelArea()">Draw</button></th>            
+            </tr>
+        </table>
         </fieldset>
     </form>
 
