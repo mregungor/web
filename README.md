@@ -1,9 +1,9 @@
 ## Welcome to GitHub Pages
 <hr>
 <br>
-[1st](##welcome-to-github-pages)
-[2nd](##code)
-[3rd](##example)
+[1st](#welcome-to-github-pages)
+[2nd](#code)
+[3rd](#example)
 
 ### This is a test repository to test Github Pages
 
