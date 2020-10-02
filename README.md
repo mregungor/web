@@ -1,3 +1,5 @@
+{% include list.liquid %}
+
 ## Welcome to GitHub Pages
 <hr>
 <br>
