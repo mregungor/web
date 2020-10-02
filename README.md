@@ -1,5 +1,5 @@
 ---
-sort: 2
+sort: 1
 ---
 ## Welcome to GitHub Pages
 <hr>
