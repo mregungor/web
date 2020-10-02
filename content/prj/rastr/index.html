@@ -16,10 +16,37 @@
         Line drawing algorithms
     </p>
     <br><br>
-    <canvas id="lineDrawerWindow">   </canvas>
+    <canvas id="canvas">   </canvas>
     <br/>    
+
+    <!--
+    <form action = "">
+        <fieldset>
+            <label>Enter x,y,size: </label>
+            <input type = "text" id = "rect_x" />
+            <input type = "text"  id = "rect_y" />
+            <input type = "text"  id = "rect_size" />
+            <button type="button" id="draw1" onclick="drawSquareFromInput()">Draw</button>
+        </fieldset>
+    </form>
+    <button type="button" id="draw" onclick="draw()">Draw</button>
+     -->
+
+    <br>
+    <p><strong><u>Enter Pixel Resolution:</strong></u></p>
+    <form action = "" style="width: 50%;">
+        <fieldset>
+            <label>Enter Pixelsize, x, y Number: </label>
+            <input type = "text" id = "pixelSize" />
+            <input type = "text"  id = "xNumber" />
+            <input type = "text"  id = "yNumber" />
+            <button type="button" id="draw2" onclick="drawPixelArea()">Draw</button>
+        </fieldset>
+    </form>
+
+
     <!-- Line drawing Js Files -->
-    <script src='vec.js'></script>
+    <script src='rastrLDA.js'></script>
 </body>
 
 </html>
