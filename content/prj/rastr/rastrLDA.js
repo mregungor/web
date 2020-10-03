@@ -38,6 +38,12 @@ function lda_midPoint(xs, ys, xn, yn)
     //console.log("dx:"+dx+" - dy:"+dy+" - m:"+m);
     //console.log("signDx:"+signDx+" - signDy:"+signDy);
 
+    /** Line properties ()
+    //According to M (m<1 or not) increment direction (which dimension has higher pixel count)
+    //  primary dimension changes & loop count (total traversed pixel) changes
+    //Signdx and Signdy determines in which direction line will be drawn
+    */
+
     // decision parameter d
     //d = (dy - (dx/2));
     d=(m<1)? (Math.abs(dy) -Math.abs(dx/2)) : (Math.abs(dx)-Math.abs(dy/2));
@@ -107,7 +113,7 @@ function lda_bresenham(xs, ys, xn, yn)
     dx=parseInt(xn)-parseInt(xs);
     dy=parseInt(yn)-parseInt(ys);
 
-    //Sign
+    //Sign - (Determines increment or decrement on the particular dimension)
     signDx=Math.sign(dx);
     signDy=Math.sign(dy);
     console.log("dx:"+dx+", dy:"+dy);
@@ -196,6 +202,7 @@ function lda_dda(xs, ys, xn, yn)
 
     let m=dy/dx;
 
+    //How many pixel will be traversed (changes according the biggest pixel count in particular direction)
     var step=(Math.abs(dx) > Math.abs(dy))?step=Math.abs(dx):step=Math.abs(dy);
 
     //  Step incerement
