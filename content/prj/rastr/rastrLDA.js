@@ -15,7 +15,77 @@ function Vector2D(x, y) {
 //1- Mid-Point LDA
 function lda_midPoint(xs, ys, xn, yn)
 {
+    //Current Position - Starting pos
+    let xk=parseInt(xs);
+    let yk=parseInt(ys);
+    let x_next;
+    let y_next;
 
+    //Store pxiel data
+    let pixelList=[];
+
+    //Add starting poing
+    pixelList.push([xk,yk]);
+
+    dx=parseInt(xn)-parseInt(xs);
+    dy=parseInt(yn)-parseInt(ys);
+
+    signDx=Math.sign(dx);
+    signDy=Math.sign(dy);
+
+    let m=dy/dx;
+
+    //console.log("dx:"+dx+" - dy:"+dy+" - m:"+m);
+    //console.log("signDx:"+signDx+" - signDy:"+signDy);
+
+    // decision parameter d
+    //d = (dy - (dx/2));
+    d=(m<1)? (Math.abs(dy) -Math.abs(dx/2)) : (Math.abs(dx)-Math.abs(dy/2));
+
+    //if m<o while(xk<xn) else while(yk<yn)
+    loop_start=(m<1)?((signDx>0)?xk:xn) : ((signDy>0)?yk:yn) ;
+    loop_end=(m<1)?((signDx>0)?xn:xk) : ((signDy>0)?yn:yk);
+    //console.log("loop_start:"+loop_start+" - loop_end:"+loop_end);
+    for(var i=loop_start;i<loop_end;i++)
+    {
+        let xk_next;
+        let yk_next; 
+
+        console.log("d:"+d);
+
+        // 'E' is chosen
+        if (d < 0)
+        {
+            if(m<1)
+            {
+                xk_next=xk+(1*signDx);
+                yk_next=yk;
+                d += Math.abs(dy);
+            }else{
+                xk_next=xk;
+                yk_next=yk+(1*signDy);
+                d += Math.abs(dx);
+            }
+        }        
+        else // 'NE' is chosen
+        {
+            if(m<1)
+            {
+                xk_next=xk+(1*signDx);
+                yk_next = yk+(1*signDy);
+                d += (Math.abs(dy) - Math.abs(dx)); 
+            }else{
+                xk_next=xk+(1*signDx);
+                yk_next = yk+(1*signDy);
+                d += (Math.abs(dx) - Math.abs(dy)); 
+            }
+            
+        } 
+        xk=xk_next;
+        yk=yk_next;   
+        pixelList.push([xk,yk]);
+    }
+    return pixelList;
 }
 
 //2- Bresenham LDA
@@ -146,22 +216,7 @@ function lda_dda(xs, ys, xn, yn)
         //Increment
         xk_next = (xk + dx);
         yk_next = (yk + dy);
-        /*
-        if(m<1)
-        {
-            xk_next= Math.round(1+xk);
-            yk_next= Math.round(m+yk);
-        }
-        else if(m>1)
-        {
-            xk_next= Math.round(1+xk);
-            yk_next= Math.round(1+yk);
-        }
-        else //m==1
-        {
-            xk_next= Math.round((1/m)+xk);
-            yk_next= Math.round(1+yk);
-        }*/
+
         xk=xk_next;
         yk=yk_next;
         pixelList.push([Math.round(xk),Math.round(yk)]);
@@ -201,6 +256,19 @@ function lda_run()
     {
         console.log("DDA LDA run");
         pixelList=lda_dda(x0, y0, xn, yn);
+        console.log(pixelList);
+
+        //Draw Filled Pixels
+        for(var i=0;i<pixelList.length;i++)
+            drawSquareWbackgroundColor(pixelList[i][0]*pixelSize,pixelList[i][1]*pixelSize,pixelSize);
+
+        //Redraw Line to be able to seen top of filled pixels
+        drawLine();
+    }
+    else if(ldaSelectionId==3)
+    {
+        console.log("Mid-point LDA run");
+        pixelList=lda_midPoint(x0, y0, xn, yn);
         console.log(pixelList);
 
         //Draw Filled Pixels
