@@ -7,7 +7,10 @@
 */
 
 /* Define 2D Vector */
-
+function Vector2D(x, y) {
+    this.x = x;
+    this.y = y;
+}
 
 //1- Mid-Point LDA
 function lda_midPoint(xs, ys, xn, yn)
@@ -18,8 +21,6 @@ function lda_midPoint(xs, ys, xn, yn)
 //2- Bresenham LDA
 function lda_bresenham(xs, ys, xn, yn)
 {
-    var pixelSize = document.getElementById("pixelSize").value;
-
     //Current Position - Starting pos
     let xk=parseInt(xs);
     let yk=parseInt(ys);
@@ -34,13 +35,14 @@ function lda_bresenham(xs, ys, xn, yn)
     pixelList_x.push(xk);
     pixelList_y.push(yk);
 
-    //Fill First Pixel
-    drawSquareWbackgroundColor(xs*pixelSize,ys*pixelSize,pixelSize);
-
     //Derivatives
     dx=parseInt(xn)-parseInt(xs);
     dy=parseInt(yn)-parseInt(ys);
 
+    //Sign
+    signDx=Math.sign(dx);
+    signDy=Math.sign(dy);
+    console.log("dx:"+dx+", dy:"+dy);
 
     if(Math.abs(dx) > Math.abs(dy))
     {
@@ -56,21 +58,18 @@ function lda_bresenham(xs, ys, xn, yn)
             if(Pk<0)
             {
                 Pk_next=Pk+2*Math.abs(dy);
-                x_next=(xk)+1;
+                x_next=(xk)+(1*signDx);
                 y_next=(yk);
             }
             else if(Pk>=0)
             {
                 Pk_next=Pk+2*Math.abs(dy)-2*Math.abs(dx);
-                x_next=( (xk)+1 );
-                y_next=( (yk)+1 );
+                x_next=( (xk)+(1*signDx) );
+                y_next=( (yk)+(1*signDy) );
             }
             Pk=Pk_next;
             xk=x_next;
             yk=y_next;
-
-            //Fill Current Determined Pixel
-            drawSquareWbackgroundColor(xk*pixelSize,yk*pixelSize,pixelSize);
 
             pixelList_x.push(xk);
             pixelList_y.push(yk);
@@ -92,20 +91,17 @@ function lda_bresenham(xs, ys, xn, yn)
             {
                 Pk_next=Pk+2*Math.abs(dx);
                 x_next=(xk);
-                y_next=(yk)+1;
+                y_next=(yk)+(1*signDy);
             }
             else if(Pk>=0)
             {
                 Pk_next=Pk+2*Math.abs(dx)-2*Math.abs(dy);
-                x_next=( (xk)+1 );
-                y_next=( (yk)+1 );
+                x_next=( (xk)+(1*signDx) );
+                y_next=( (yk)+(1*signDy) );
             }
             Pk=Pk_next;
             xk=x_next;
             yk=y_next;
-
-            //Fill Current Determined Pixel
-            drawSquareWbackgroundColor(xk*pixelSize,yk*pixelSize,pixelSize);
 
             pixelList_x.push(xk);
             pixelList_y.push(yk);
@@ -115,11 +111,10 @@ function lda_bresenham(xs, ys, xn, yn)
 
     }
 
-    console.log(pixelList_x);
-    console.log(pixelList_y);
+    //console.log(pixelList_x);
+    //console.log(pixelList_y);
 
-    //Draw Line again to see Line
-    drawLine();
+    return [pixelList_x, pixelList_y];
 }
 
 //3- DDA LDA
@@ -138,11 +133,22 @@ function lda_run()
     var xn = document.getElementById("xn").value;
     var yn = document.getElementById("yn").value;
 
+    var pixelSize = document.getElementById("pixelSize").value;
 
     if(ldaSelectionId==1)
     {
-        lda_bresenham(x0, y0, xn, yn);
         console.log("Bresenham LDA run");
+        var pixelList=lda_bresenham(x0, y0, xn, yn);
+        console.log(pixelList);
+
+        //Draw Filled Pixels
+        for(var i=0;i<pixelList[0].length;i++)
+            drawSquareWbackgroundColor(pixelList[0][i]*pixelSize,pixelList[1][i]*pixelSize,pixelSize);
+
+        //Redraw Line to be able to seen top of filled pixels
+        drawLine();
+        
+
     }else{
         console.log("Selected Algorithm is yet to be implemented.");
     }
@@ -243,8 +249,8 @@ function drawLine()
 
 
     ctx.beginPath();        // Start a new path
-    ctx.moveTo( (x0)*pixelSize, (y0)*pixelSize );     // Move the pen to (x0, y0)
-    ctx.lineTo( (xn+1)*pixelSize, (yn+1)*pixelSize );     // Draw a line to (xn, yn)
+    ctx.moveTo( (x0)*pixelSize+pixelSize/2, (y0)*pixelSize+pixelSize/2 );     // Move the pen to (x0, y0)
+    ctx.lineTo( (xn)*pixelSize+pixelSize/2, (yn)*pixelSize +pixelSize/2);     // Draw a line to (xn, yn)
     ctx.stroke();           // Render the path
 
 }
