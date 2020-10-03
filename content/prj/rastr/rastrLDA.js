@@ -28,12 +28,10 @@ function lda_bresenham(xs, ys, xn, yn)
     let y_next;
 
     //Store pxiel data
-    let pixelList_x=[];
-    let pixelList_y=[];
+    let pixelList=[];
 
     //Add starting poing
-    pixelList_x.push(xk);
-    pixelList_y.push(yk);
+    pixelList.push([xk,yk]);
 
     //Derivatives
     dx=parseInt(xn)-parseInt(xs);
@@ -71,8 +69,8 @@ function lda_bresenham(xs, ys, xn, yn)
             xk=x_next;
             yk=y_next;
 
-            pixelList_x.push(xk);
-            pixelList_y.push(yk);
+            pixelList.push([xk,yk]);
+
 
             //console.log("x:"+xk+",y:"+yk+"\n");
         } //Process until dx-1
@@ -103,8 +101,8 @@ function lda_bresenham(xs, ys, xn, yn)
             xk=x_next;
             yk=y_next;
 
-            pixelList_x.push(xk);
-            pixelList_y.push(yk);
+            pixelList.push([xk,yk]);
+
 
             //console.log("x:"+xk+",y:"+yk+"\n");
         } //Process until dx-1
@@ -114,16 +112,65 @@ function lda_bresenham(xs, ys, xn, yn)
     //console.log(pixelList_x);
     //console.log(pixelList_y);
 
-    return [pixelList_x, pixelList_y];
+    return pixelList;
 }
 
 //3- DDA LDA
 function lda_dda(xs, ys, xn, yn)
 {
+    let xk=parseInt(xs);
+    let yk=parseInt(ys);
 
+    let dx=xn-xs;
+    let dy=yn-ys;
+
+    let m=dy/dx;
+
+    var step=(Math.abs(dx) > Math.abs(dy))?step=Math.abs(dx):step=Math.abs(dy);
+
+    //  Step incerement
+    dx = dx / step;
+    dy = dy / step;
+
+    //Store pxiel data
+    let pixelList=[]; //x,y
+
+    //Add starting poing
+    pixelList.push([xk,yk]);
+
+    for (var i = 1; i <= step; i++)
+    {
+        let xk_next;
+        let yk_next;
+
+        //Increment
+        xk_next = (xk + dx);
+        yk_next = (yk + dy);
+        /*
+        if(m<1)
+        {
+            xk_next= Math.round(1+xk);
+            yk_next= Math.round(m+yk);
+        }
+        else if(m>1)
+        {
+            xk_next= Math.round(1+xk);
+            yk_next= Math.round(1+yk);
+        }
+        else //m==1
+        {
+            xk_next= Math.round((1/m)+xk);
+            yk_next= Math.round(1+yk);
+        }*/
+        xk=xk_next;
+        yk=yk_next;
+        pixelList.push([Math.round(xk),Math.round(yk)]);
+    }
+    return pixelList;
 }
 
 //Select & Run Line Drawing Algorithm
+var pixelList;
 function lda_run()
 {
     var ldaSelectionId = document.getElementById("ldaList").value;
@@ -138,19 +185,34 @@ function lda_run()
     if(ldaSelectionId==1)
     {
         console.log("Bresenham LDA run");
-        var pixelList=lda_bresenham(x0, y0, xn, yn);
+        pixelList=lda_bresenham(x0, y0, xn, yn);
         console.log(pixelList);
 
         //Draw Filled Pixels
-        for(var i=0;i<pixelList[0].length;i++)
-            drawSquareWbackgroundColor(pixelList[0][i]*pixelSize,pixelList[1][i]*pixelSize,pixelSize);
+        for(var i=0;i<pixelList.length;i++)
+            drawSquareWbackgroundColor(pixelList[i][0]*pixelSize,pixelList[i][1]*pixelSize,pixelSize);
 
         //Redraw Line to be able to seen top of filled pixels
         drawLine();
         
 
-    }else{
+    }
+    else if(ldaSelectionId==2)
+    {
+        console.log("DDA LDA run");
+        pixelList=lda_dda(x0, y0, xn, yn);
+        console.log(pixelList);
+
+        //Draw Filled Pixels
+        for(var i=0;i<pixelList.length;i++)
+            drawSquareWbackgroundColor(pixelList[i][0]*pixelSize,pixelList[i][1]*pixelSize,pixelSize);
+
+        //Redraw Line to be able to seen top of filled pixels
+        drawLine();
+    }
+    else{
         console.log("Selected Algorithm is yet to be implemented.");
+        alert("Selected Algorithm is yet to be implemented.");
     }
 
 }
@@ -233,7 +295,6 @@ function drawPixelArea()
         }
     }
 }
-
 
 
 function drawLine()
