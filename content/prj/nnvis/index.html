@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang=”en”>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<title>Neural Network Example</title>
+<!--
+<link rel="stylesheet" href="style.css">
+<script src="scripts.js"></script>
+-->
+</head>
+
+<body style="overflow:auto;">
+    <h1>Javascript Simple Neural Network Example</h1>
+    <p>
+        Please select input data
+    </p>
+
+
+
+    <h3>You can select multiple file(s)</h3>
+    <form action="" style="float:left; width: max-content; text-align: left;">
+        <fieldset>
+            <legend>INPUT PROCESS SECTION:</legend><br>
+        <fieldset>
+            <legend>Select Input File(s):</legend>
+            <input type="file" id="inputDataFile" name="inputDataFile" multiple>
+        </fieldset><br>
+        <fieldset>
+            <legend>Select Target File(s):</legend>
+            <input type="file" id="targetDataFile" name="targetDataFile" multiple>
+        </fieldset><br>
+            <button type="button" id="inputProcess" onclick="">Process</button>
+            <label id="inputFileProcessMessage" style="color:darkorange"> No input process is waiting.</label>
+        </fieldset>
+    </form>
+    <p style="float:left; font-size: 6vh;"> &#8594;</p>
+    <canvas id="canvas" style="float:left; margin-left: 8px; border: 1px solid black;">   </canvas>
+    <br/>    
+    <script>
+        var canvas = document.getElementById("canvas");
+        canvas.width=800;
+        canvas.height=260;
+        var ctx = canvas.getContext("2d");
+        ctx.fillStyle = "lightgray";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+    </script>
+    <br>
+    <p style="clear:both;"></p>
+    <br>
+    <p ><strong><u>Enter Network Configuration:</strong></u></p>
+    <form action = "" style="width: max-content; text-align: left;">
+        <fieldset>
+        <table>
+            <tr>
+                <th><label>Input Data Number (x):  </label></th>
+                <th><input type = "text" id = "idN" /></th>
+                <th><label>Sample Feature No (d):    </label></th>
+                <th><input type = "text"  id = "sfNo" /></th>
+                <th><label>Output Size (y):  </label></th>
+                <th><input type = "text"  id = "outputSize" /></th>
+            </tr>
+            <tr>
+                <th><label>Hidden Layer Count:  </label></th>
+                <th><input type = "text"  id = "layerCount" /></th>
+                <th><label>Hidden Layer Neuron Number:  </label></th>
+                <th><input type = "text"  id = "layerNeuronCount" /></th>
+                <th><label>Learning Parameters (Leave Empty):  </label></th>
+                <th><input type = "text"  id = "lparameters" /></th>
+            </tr>
+            <tr>
+                <th><button type="button" id="neuralNetCreateButton" onclick="createNNetwork()">Create Network</button></th>      
+                <th><label id="netCreationOutputMessage" style="color:darkorange"> Currently no network is created. </label></th>      
+            </tr>
+            <tr>
+                <th><button type="button" id="trainNetworkButton" onclick="trainNNetwork()">Train Network</button></th>    
+                <th><label id="netTrainingOutputMessage" style="color:darkorange"> Currently there is no tranining process. </label></th>        
+            </tr>
+        </table>
+        </fieldset>
+    </form>
+
+
+
+
+
+    <!-- Js Files -->
+    <script src='nn.js'></script>
+</body>
+
+</html>
