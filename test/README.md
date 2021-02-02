@@ -83,14 +83,14 @@ graph TB
 
 <details><summary>Phyton Code Block:</summary>
 
-
 ###  Code block
+
+
 <br>
 {% highlight python %}
 print("hello world!")
 {% endhighlight %}
 <br>
-
 </details>
 
 ## Example 
