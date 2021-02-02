@@ -81,7 +81,7 @@ graph TB
 
 ## collapsible markdown?
 
-<details><summary>CLICK ME</summary>
+<details><summary>Phyton Code Block:</summary>
 
 
 ###  Code block
