@@ -1,3 +1,1 @@
-# About Me
-
-About Me Page
+Studies
