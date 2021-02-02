@@ -1,4 +1,4 @@
 # ABOUT ME
 
-[Info](me.md)
-[Interests](interests.md)
+[Info](aboutme/me.md)
+[Interests](aboutme/interests.md)
