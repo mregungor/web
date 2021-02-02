@@ -82,7 +82,7 @@ graph TB
 ## collapsible markdown?
 
 <details><summary>CLICK ME</summary>
-<p>
+
 
 ###  Code block
 <br>
@@ -90,7 +90,7 @@ graph TB
 print("hello world!")
 {% endhighlight %}
 <br>
-</p>
+
 </details>
 
 ## Example 
