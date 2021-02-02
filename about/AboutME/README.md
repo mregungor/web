@@ -1,2 +1,3 @@
 ## About Me
-[file1](AboutMe/me.md)
+[Info](me.md)
+[Interests](interests.md)
