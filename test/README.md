@@ -84,7 +84,7 @@ graph TB
 <details><summary>CLICK ME</summary>
 <p>
 
-#### yes, even hidden code blocks!
+###  Code block
 <br>
 {% highlight python %}
 print("hello world!")
