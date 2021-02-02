@@ -86,9 +86,11 @@ graph TB
 
 #### yes, even hidden code blocks!
 
-'''python
+```python
+
 print("hello world!")
-'''
+
+```
 
 
 </p>
