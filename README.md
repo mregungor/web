@@ -10,9 +10,8 @@
 
 [Markdown_Language](content/markDownLang/)
 
-[AboutME](about/AboutME/)
+[AboutME](about/)
 
-[About](about/about.md)
 
 
 <br>

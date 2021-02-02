@@ -85,7 +85,6 @@ graph TB
 
 <h3> Code block </h3>
 
-
 <br>
 {% highlight python %}
 print("hello world!")
