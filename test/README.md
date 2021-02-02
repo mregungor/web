@@ -79,7 +79,7 @@ graph TB
 
 <br>
 
-## collapsible markdown?
+## Collapsible Markdown
 
 <details><summary>Phyton Code Block</summary>
 
