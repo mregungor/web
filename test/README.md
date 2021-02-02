@@ -79,6 +79,20 @@ graph TB
 
 <br>
 
+## collapsible markdown?
+
+<details><summary>CLICK ME</summary>
+<p>
+
+#### yes, even hidden code blocks!
+
+```python
+print("hello world!")
+```
+
+</p>
+</details>
+
 ## Example 
 <br>
 [RayTracing Example](content/prj/raytr/index.html)
