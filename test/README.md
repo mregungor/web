@@ -85,10 +85,11 @@ graph TB
 <p>
 
 #### yes, even hidden code blocks!
-
-```python
+<br>
+```
 print("hello world!")
 ```
+<br>
 
 </p>
 </details>
