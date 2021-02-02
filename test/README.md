@@ -86,9 +86,9 @@ graph TB
 
 #### yes, even hidden code blocks!
 <br>
-```
+{% highlight python %}
 print("hello world!")
-```
+{% endhighlight %}
 <br>
 </p>
 </details>
