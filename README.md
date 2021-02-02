@@ -7,9 +7,7 @@
 [4th - Lorem Ipsum](#lorem-ipsum)<br>
 
 ### This is a test repository to test Github Pages
-[//]: # (
-{% include list.liquid all=true %}
-)
+[//]: # ({% include list.liquid all=true %})
 <br>
 
 [Content Page](content/)
