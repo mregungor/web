@@ -684,7 +684,8 @@ ul.sub-menu {
 }
 
 .single-service img {
-  margin-bottom: 35px;
+  /*margin-bottom: 35px;*/
+  margin-bottom: 15px;
 }
 
 .single-service .fold {
@@ -693,7 +694,7 @@ ul.sub-menu {
 
 .single-service h2 {
   margin-top: 0;
-  margin-bottom: 15px;
+  /*margin-bottom: 15px;*/
 }
 
 .single-service p {
