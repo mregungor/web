@@ -13,7 +13,8 @@
 
   body {
     background: #fff;
-    font-family: 'Lato', sans-serif;
+    /*font-family: 'Lato', sans-serif;*/
+    font-family: 'Open+Sans', sans-serif;
     font-weight: 300;
     font-size: 14px;
     line-height: 22px;
@@ -53,7 +54,8 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Lato', sans-serif;
+    /*font-family: 'Lato', sans-serif;*/
+    font-family: 'Open+Sans', sans-serif;
     font-weight: 300;
   }
 
@@ -432,6 +434,7 @@ ul.sub-menu {
   font-size: 40px;
   color: #d99c4e;
   font-family: 'Noto Sans', sans-serif;
+  /*font-family: 'Open+Sans', sans-serif;*/
   transform:rotate(180deg);
   -ms-transform:rotate(180deg); /* IE 9 */
   -webkit-transform: rotate(180deg); /* Opera, Chrome, and Safari */
