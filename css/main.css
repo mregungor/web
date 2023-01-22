@@ -521,6 +521,7 @@ ul.sub-menu {
 }
 
 .animate-in .slide-text {
+  /*-webkit-animation: fadeInLeftBig 700ms cubic-bezier(0.190,1.000,0.220,1.000) 200ms both;*/
   -webkit-animation: fadeInLeftBig 700ms cubic-bezier(0.190,1.000,0.220,1.000) 200ms both;
   animation: fadeInLeftBig 700ms cubic-bezier(0.190,1.000,0.220,1.000) 200ms both;
 }
@@ -1049,10 +1050,17 @@ ul.elements li > i{
   text-align: center;
   padding: 0;
   border-radius: 40px;
+
   -webkit-animation: scaleIn 400ms linear 100ms both;
   animation: scaleIn 400ms linear 100ms both;
   -webkit-transition: all 0.9s ease;
   transition: all 0.9s ease;
+  /*
+  -webkit-animation: scaleIn 40ms linear 10ms both;
+  animation: scaleIn 40ms linear 10ms both;
+  -webkit-transition: all 0.1s ease;
+  transition: all 0.1s ease;
+  */
 }
 
 .portfolio-view .nav-pills li a:hover {
@@ -1526,8 +1534,13 @@ Blog Default
 
 .single-blog:hover .post-overlay{
   display: block;
+  
   -webkit-animation: fadeIn 300ms;
   animation: fadeIn 300ms;
+  /*
+  -webkit-animation: fadeIn 30ms;
+  animation: fadeIn 30ms;
+  */
 }
 
 .timeline-divider{
