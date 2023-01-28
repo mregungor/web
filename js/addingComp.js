@@ -70,8 +70,7 @@ const navbar = `	<header id="header">
                         <li><a href="portfolio-details.html">Portfolio Details</a></li>
                     </ul>
                 </li>                         
-                <!--<li><a href="shortcodes.html ">Shortcodes</a></li>-->
-                <li><a href="shortcodes.html ">Uygulamalar</a></li>
+                
             </ul>
         </div>
         <div class="search">
