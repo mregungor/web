@@ -31,7 +31,7 @@ const navbar = `	<header id="header">
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="index.html">Ana Sayfa</a></li>
+                <li ><a href="index.html">Ana Sayfa</a></li>
                 <li class="dropdown"><a href="#">Dersler <i class="fa fa-angle-down"></i></a>
                     <ul role="menu" class="sub-menu">
                         <li><a href="aboutus.html">Öğrenci Asistanlarımız</a></li>
@@ -69,7 +69,16 @@ const navbar = `	<header id="header">
                         <li><a href="portfoliothree.html">2 Columns</a></li>
                         <li><a href="portfolio-details.html">Portfolio Details</a></li>
                     </ul>
-                </li>                         
+                </li> 
+                <li class="dropdown"><a href="portfolio.html">Online Compilers<i class="fa fa-angle-down"></i></a>
+                    <ul role="menu" class="sub-menu">
+                        <li><a href="ccompiler.html">C</a></li>
+                        <li><a href="javacompiler.html">Java</a></li>
+                        <li><a href="cppcompiler.html">C++</a></li>
+                        <li><a href="pythoncompiler.html">Python</a></li>
+                        <li><a href="javascriptcompiler.html">Java Script</a></li>
+                    </ul>
+                </li>                          
                 
             </ul>
         </div>
