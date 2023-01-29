@@ -1,4 +1,22 @@
-const navbar = `	<header id="header">      
+const sentences = [
+    {
+        name:"Anonim",
+        text:'Dağın tepesindeki adam oraya düşmedi.'
+    },
+    {
+        name:"Anonim",
+        text:'Başlamak için harika biri olmana gerek yok. Fakat harika biri olmak için başlamalısın.'
+    },
+    {
+        name:"Anonim",
+        text:"Doğru olanı yap, kolay olanı değil."
+    }
+]
+const nav = document.querySelector('#navbar')
+const element = document.querySelector('#footer_id')
+
+//footer
+const navbar = `<header id="header">      
 <div class="container">
     <div class="row">
         <div class="col-sm-12 overflow">
@@ -94,10 +112,69 @@ const navbar = `	<header id="header">
 </div>
 </header>`
 
-//addComp fuction required for add a navbar section on all pages  
-const nav = document.querySelector('#navbar')
-const addComp = (navbar) => {
+//navbar
+const footer = ` <footer id="footer" class="d-flex">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-12 text-center bottom-separator">
+                                    <img src="images/home/under.png" class="img-responsive inline" alt="">
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="testimonial bottom">
+                                        <h2>Özlü söz</h2>
+                                        <div class="media">
+                                            <div class="media-body">
+                                                <blockquote>${sentences[0].text}</blockquote>
+                                                <h3><a href="#">- ${sentences[0].name}</a></h3>
+                                            </div>
+                                        </div>
+                                        
+                                    </div> 
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <div class="contact-info bottom">
+                                        <h2>Contacts</h2>
+                                        <address>
+                                        E-mail: <a style="cursor: pointer;">emre.gungor-at-ksbu.edu.tr</a> <br> 
+                                        GitHub: <a href="https://github.com/mregungor">https://github.com/mregungor</a> <br> 
+                                        Fax: +1 (123) 456 7891 <br> 
+                                        </address>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <div class="contact-info bottom">
+                                    
+
+                                        <h2>Address</h2>
+                                        <address>
+                                            KSBU, MÜHENDİSLİK VE DOĞA BİLİMLERİ FAKÜLTESİ,
+                                            BİLGİSAYAR MÜHENDİSLİĞİ<br> 
+                                            Germiyan Kampüsü, <br> 
+                                            Merkez, KÜTAHYA <br> 
+                                            TÜRKİYE
+                                            <br> 
+                                        </address>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-sm-12">
+                                    <div class="copyright-text text-center">
+                                        <p>&copy;  Emre GÜNGÖR 2023. All Rights Reserved. <br> Maintained By Mert Seyit Yılmaz.</p>
+                                        <p><a target="_blank" href="http://www.themeum.com">Themeum</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </footer>`
+
+const addFooter = (footer) => {
+    element.innerHTML = footer
+}   
+
+const addNavbar = (navbar) => {
     nav.innerHTML = navbar
 }
 
-addComp(navbar)
+addNavbar(navbar)
+addFooter(footer)                 

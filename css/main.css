@@ -373,7 +373,19 @@ ul.sub-menu {
 /*************************
 *******Footer******
 **************************/
+.row-footer {
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
 
+.unselectable {
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  color: #cc0000;
+}
 #footer {
   padding-bottom: 75px;
   background-image: url(../images/home/footer.png);
