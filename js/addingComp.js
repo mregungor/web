@@ -57,38 +57,25 @@ const navbar = `<header id="header">
                         <li><a href="aboutus2.html">Programlama Dilleri</a></li>
                         <li><a href="dersler_neuralnets.html">Neural Networks</a></li>
                         <li><a href="service.html">Services</a></li>
-                        <li><a href="pricing.html">Testing</a></li>
-                        <li><a href="contact.html">Contact us</a></li>
-                        <li><a href="contact2.html">Contact us 2</a></li>
-                        <li><a href="404.html">404 error</a></li>
-                        <li><a href="coming-soon.html">Coming Soon</a></li>
+                        <li><a href="contact2.html">Contact Us</a></li>
                     </ul>
                 </li>                  
                 <li class="dropdown"><a href="blog.html">Projeler <i class="fa fa-angle-down"></i></a>
                     <ul role="menu" class="sub-menu">
-                        <li><a href="blog.html">Projeler (Default)</a></li>
+                        <li><a href="blog.html">Projeler</a></li>
                         <li><a href="">Scientific</a></li>
                         <li><a href="">Game Development</a></li>
-                        <li><a href="blogtwo.html">Timeline Projects</a></li>
-                        <li><a href="blogone.html">2 Columns + Right Sidebar</a></li>
-                        <li><a href="blogthree.html">1 Column + Left Sidebar</a></li>
-                        <li><a href="blogfour.html">Blog M</a></li>
-                        <li><a href="blogdetails.html">Blog Details</a></li>
+                        <li><a href="blog.html">Blogs</a></li>
                     </ul>
                 </li>
                 <li class="dropdown"><a href="portfolio.html">Akademik <i class="fa fa-angle-down"></i></a>
                     <ul role="menu" class="sub-menu">
-                        <!--<li><a href="portfolio.html">Portfolio Default</a></li>-->
-                        <li><a href="portfolio.html">Portfolio Default</a></li>
                         <li><a href="https://avesis.ksbu.edu.tr/emre.gungor/">Avensis</a></li>
-                        <li><a href="portfoliofour.html">Isotope 3 Columns + Right Sidebar</a></li>
-                        <li><a href="portfolioone.html">3 Columns + Right Sidebar</a></li>
-                        <li><a href="portfoliotwo.html">3 Columns + Left Sidebar</a></li>
-                        <li><a href="portfoliothree.html">2 Columns</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
                         <li><a href="portfolio-details.html">Portfolio Details</a></li>
                     </ul>
                 </li> 
-                <li class="dropdown"><a href="portfolio.html">Online Compilers<i class="fa fa-angle-down"></i></a>
+                <li class="dropdown"><a style="cursor:pointer">Online Compilers<i class="fa fa-angle-down"></i></a>
                     <ul role="menu" class="sub-menu">
                         <li><a href="ccompiler.html">C</a></li>
                         <li><a href="javacompiler.html">Java</a></li>
