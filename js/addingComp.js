@@ -1,3 +1,8 @@
+//indis for ramdom sentences
+let indis = Math.floor(Math.random() * 3)
+const nav = document.querySelector('#navbar')
+const element = document.querySelector('#footer_id')
+
 const sentences = [
     {
         name:"Anonim",
@@ -12,8 +17,6 @@ const sentences = [
         text:"Doğru olanı yap, kolay olanı değil."
     }
 ]
-const nav = document.querySelector('#navbar')
-const element = document.querySelector('#footer_id')
 
 //footer
 const navbar = `<header id="header">      
@@ -52,7 +55,7 @@ const navbar = `<header id="header">
                 <li ><a href="index.html">Ana Sayfa</a></li>
                 <li class="dropdown"><a href="#">Dersler <i class="fa fa-angle-down"></i></a>
                     <ul role="menu" class="sub-menu">
-                        <li><a href="aboutus.html">Öğrenci Asistanlarımız</a></li>
+                        <li><a href="ogrenci-asistanlar.html">Öğrenci Asistanlarımız</a></li>
                         <li><a href="dersler.html">Dersler</a></li>
                         <li><a href="aboutus2.html">Programlama Dilleri</a></li>
                         <li><a href="dersler_neuralnets.html">Neural Networks</a></li>
@@ -60,22 +63,22 @@ const navbar = `<header id="header">
                         <li><a href="contact2.html">Contact Us</a></li>
                     </ul>
                 </li>                  
-                <li class="dropdown"><a href="blog.html">Projeler <i class="fa fa-angle-down"></i></a>
+                <li class="dropdown"><a href="#">Projeler <i class="fa fa-angle-down"></i></a>
                     <ul role="menu" class="sub-menu">
-                        <li><a href="blog.html">Projeler</a></li>
+                        <li><a href="projeler.html">Projeler</a></li>
                         <li><a href="">Scientific</a></li>
                         <li><a href="">Game Development</a></li>
                         <li><a href="blog.html">Blogs</a></li>
                     </ul>
                 </li>
-                <li class="dropdown"><a href="portfolio.html">Akademik <i class="fa fa-angle-down"></i></a>
+                <li class="dropdown"><a href="#">Akademik <i class="fa fa-angle-down"></i></a>
                     <ul role="menu" class="sub-menu">
-                        <li><a href="https://avesis.ksbu.edu.tr/emre.gungor/">Avensis</a></li>
+                        <li><a target="_blank" href="https://avesis.ksbu.edu.tr/emre.gungor/">Avensis</a></li>
                         <li><a href="portfolio.html">Portfolio</a></li>
                         <li><a href="portfolio-details.html">Portfolio Details</a></li>
                     </ul>
                 </li> 
-                <li class="dropdown"><a style="cursor:pointer">Online Compilers<i class="fa fa-angle-down"></i></a>
+                <li class="dropdown"><a href="#">Compilers <i class="fa fa-angle-down"></i></a>
                     <ul role="menu" class="sub-menu">
                         <li><a href="ccompiler.html">C</a></li>
                         <li><a href="javacompiler.html">Java</a></li>
@@ -83,17 +86,8 @@ const navbar = `<header id="header">
                         <li><a href="pythoncompiler.html">Python</a></li>
                         <li><a href="javascriptcompiler.html">Java Script</a></li>
                     </ul>
-                </li>                          
-                
+                </li>     
             </ul>
-        </div>
-        <div class="search">
-            <form role="form">
-                <i class="fa fa-search"></i>
-                <div class="field-toggle">
-                    <input type="text" class="search-form" autocomplete="off" placeholder="Search">
-                </div>
-            </form>
         </div>
     </div>
 </div>
@@ -111,11 +105,10 @@ const footer = ` <footer id="footer" class="d-flex">
                                         <h2>Özlü söz</h2>
                                         <div class="media">
                                             <div class="media-body">
-                                                <blockquote>${sentences[0].text}</blockquote>
-                                                <h3><a href="#">- ${sentences[0].name}</a></h3>
+                                                <blockquote>${sentences[indis].text}</blockquote>
+                                                <h3><a href="#">- ${sentences[indis].name}</a></h3>
                                             </div>
                                         </div>
-                                        
                                     </div> 
                                 </div>
                                 <div class="col-md-3 col-sm-6">
@@ -126,13 +119,10 @@ const footer = ` <footer id="footer" class="d-flex">
                                         GitHub: <a href="https://github.com/mregungor">https://github.com/mregungor</a> <br> 
                                         Fax: +1 (123) 456 7891 <br> 
                                         </address>
-
                                     </div>
                                 </div>
                                 <div class="col-md-3 col-sm-6">
                                     <div class="contact-info bottom">
-                                    
-
                                         <h2>Address</h2>
                                         <address>
                                             KSBU, MÜHENDİSLİK VE DOĞA BİLİMLERİ FAKÜLTESİ,
@@ -147,8 +137,7 @@ const footer = ` <footer id="footer" class="d-flex">
                                 
                                 <div class="col-sm-12">
                                     <div class="copyright-text text-center">
-                                        <p>&copy;  Emre GÜNGÖR 2023. All Rights Reserved. <br> Maintained By Mert Seyit Yılmaz.</p>
-                                        <p><a target="_blank" href="http://www.themeum.com">Themeum</a></p>
+                                        <p>&copy;  Emre GÜNGÖR 2023. All Rights Reserved. <br> Maintained By <span style="font-weight:bold;">Mert Seyit Yılmaz.</span></p>
                                     </div>
                                 </div>
                             </div>

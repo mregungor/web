@@ -2626,3 +2626,17 @@ span.stButton_gradient,
   border-radius: 100%;
   margin: 10px 0;
 }
+
+/* Asistan Öğrenciler bölümü */
+
+@media(max-width:430px) {
+  .social-profile .nav-pills li a {
+    width: 23px;
+    height: 23px;
+    line-height: normal;
+  }
+
+  .social-profile .nav-pills li a i {
+    margin-top: 5px;
+  }
+}
