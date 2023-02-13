@@ -92,7 +92,7 @@ const navbar = `<header id="header">
                     <ul role="menu" class="sub-menu">
                         <li><a href="ogrenci-asistanlar.html">Öğrenci Asistanlarımız</a></li>
                         <li><a href="dersler.html">Dersler</a></li>
-                        <li><a href="programlama-dilleri.html">Programlama Dilleri</a></li>
+                        <li><a href="programlama-dilleri.html">Programlama</a></li>
                         <li><a href="dersler_neuralnets.html">Neural Networks</a></li>
                         <li><a href="service.html">Services</a></li>
                         <li><a href="contact2.html">Contact Us</a></li>
