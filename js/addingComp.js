@@ -1,5 +1,4 @@
 //indis for ramdom sentences
-let indis = Math.floor(Math.random() * 3)
 const nav = document.querySelector('#navbar')
 const element = document.querySelector('#footer_id')
 
@@ -15,8 +14,42 @@ const sentences = [
     {
         name:"Anonim",
         text:"Doğru olanı yap, kolay olanı değil."
+    },
+    {
+        name:"Gorden Eadie",
+        text:"Hiçbir şey için ayağa kalkmıyorsanız herhangi bir şey sizi düşürebilir."
+    },
+    {
+        name:"Dr Henry Link",
+        text:"Oturduğumuz sürece korkular yaratırız. Harekete geçtiğimizde ise korkularımızın üstesinden geliriz."
+    },
+    {
+        name:"Nelson Mandela",
+        text:"Yüksek bir tepeye tırmandığında daha tırmanacak çok tepe olduğunu göreceksin."
+    },
+    {
+        name:"M. Voltaire",
+        text:"Pek az insan başkalarının deneyimlerinden yararlanmayı bilecek kadar akıllıdır."
+    },
+    {
+        name:"Bernard Shaw",
+        text:"Bu dünyada başarıya ulaşan insanlar istedikleri şartları yakalayan insanlardır. Eğer bu şartları bulamazlarsa, kendileri yaratırlar."
+    },
+    {
+        name:"Henry Ford",
+        text:"Hatalar değil, çareler bulun."
+    },
+    {
+        name:"Gazi Mustafa Kemal Atatürk",
+        text:"Hayatta en hakiki mürşit, bilimdir."
+    },
+    {
+        name:"Albert Einstein",
+        text:"Bütün bilim,her günkü düşüncenin mükemmel şekilde ıslah edilmesinden başka bir şey değildir."
     }
 ]
+let indis = Math.floor(Math.random() * sentences.length)
+
 
 //footer
 const navbar = `<header id="header">      
@@ -46,7 +79,9 @@ const navbar = `<header id="header">
             </button>
 
             <a class="navbar-brand" href="index.html">
-                <h1><img src="images/logo.png" alt="logo"></h1>
+                <div style="width:100px;">
+                    <img src="images/logo.png" alt="logo">
+                </div>
             </a>
             
         </div>
@@ -57,7 +92,7 @@ const navbar = `<header id="header">
                     <ul role="menu" class="sub-menu">
                         <li><a href="ogrenci-asistanlar.html">Öğrenci Asistanlarımız</a></li>
                         <li><a href="dersler.html">Dersler</a></li>
-                        <li><a href="aboutus2.html">Programlama Dilleri</a></li>
+                        <li><a href="programlama-dilleri.html">Programlama Dilleri</a></li>
                         <li><a href="dersler_neuralnets.html">Neural Networks</a></li>
                         <li><a href="service.html">Services</a></li>
                         <li><a href="contact2.html">Contact Us</a></li>
@@ -116,7 +151,7 @@ const footer = ` <footer id="footer" class="d-flex">
                                         <h2>Contacts</h2>
                                         <address>
                                         E-mail: <a style="cursor: pointer;">emre.gungor-at-ksbu.edu.tr</a> <br> 
-                                        GitHub: <a href="https://github.com/mregungor">https://github.com/mregungor</a> <br> 
+                                        GitHub: <a target='_blank' href="https://github.com/mregungor">https://github.com/mregungor</a> <br> 
                                         Fax: +1 (123) 456 7891 <br> 
                                         </address>
                                     </div>
