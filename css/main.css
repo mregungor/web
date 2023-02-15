@@ -2725,3 +2725,17 @@ span.stButton_gradient,
   }
 }
 
+@media(max-width:400px) {
+  .Row {
+    grid-template-columns: auto;
+  }
+
+  .box {
+    height: 365px;
+  }
+
+  .button-top-div {
+    bottom: 10px;
+  }
+}
+
