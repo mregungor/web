@@ -2697,6 +2697,11 @@ span.stButton_gradient,
   transition: all .4s;
 }
 
+.nav-pills {
+  color: white;
+  font-size: 20px;
+}
+
 @media(max-width:900px) {
   .Row {
     grid-template-columns: auto auto;

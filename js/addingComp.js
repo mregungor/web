@@ -103,7 +103,6 @@ const navbar = `<header id="header">
                         <li><a href="projeler.html">Projeler</a></li>
                         <li><a href="">Scientific</a></li>
                         <li><a href="">Game Development</a></li>
-                        <li><a href="blog.html">Blogs</a></li>
                     </ul>
                 </li>
                 <li class="dropdown"><a href="#">Akademik <i class="fa fa-angle-down"></i></a>
@@ -113,7 +112,7 @@ const navbar = `<header id="header">
                         <li><a href="portfolio-details.html">Portfolio Details</a></li>
                     </ul>
                 </li> 
-                <li class="dropdown"><a href="#">Compilers <i class="fa fa-angle-down"></i></a>
+                <li class="dropdown"><a href="#">Derleyiciler<i class="fa fa-angle-down"></i></a>
                     <ul role="menu" class="sub-menu">
                         <li><a href="ccompiler.html">C</a></li>
                         <li><a href="javacompiler.html">Java</a></li>
@@ -152,7 +151,6 @@ const footer = ` <footer id="footer" class="d-flex">
                                         <address>
                                         E-mail: <a style="cursor: pointer;">emre.gungor-at-ksbu.edu.tr</a> <br> 
                                         GitHub: <a target='_blank' href="https://github.com/mregungor">https://github.com/mregungor</a> <br> 
-                                        Fax: +1 (123) 456 7891 <br> 
                                         </address>
                                     </div>
                                 </div>
@@ -172,7 +170,7 @@ const footer = ` <footer id="footer" class="d-flex">
                                 
                                 <div class="col-sm-12">
                                     <div class="copyright-text text-center">
-                                        <p>&copy;  Emre GÜNGÖR 2023. All Rights Reserved. <br> Maintained By <span style="font-weight:bold;">Mert Seyit Yılmaz.</span></p>
+                                        <p>&copy;  Emre GÜNGÖR 2023. All Rights Reserved. <br> Maintained By <a target="_blank" href="https://www.linkedin.com/in/seyit-y%C4%B1lmaz-456b44253/"><span style="font-weight:bold;">Mert Seyit Yılmaz.</span></a></p>
                                     </div>
                                 </div>
                             </div>
