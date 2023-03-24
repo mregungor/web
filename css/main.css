@@ -2731,10 +2731,6 @@ span.stButton_gradient,
 }
 
 @media(max-width:400px) {
-  .Row {
-    grid-template-columns: auto;
-  }
-
   .box {
     height: 365px;
   }
@@ -2743,4 +2739,131 @@ span.stButton_gradient,
     bottom: 10px;
   }
 }
+/* asistan öğrenciler */
 
+.person-thumb {
+  padding: 10px;
+  border: 2px solid rgb(224, 219, 219);
+  border-radius: 10px;
+}
+
+
+/* oyun programlamaya giriş */
+.creator-name {
+  color: #dfb883;
+  font-weight: bold;
+  word-wrap: unset;
+}
+.no-wrap {
+  inline-size: max-content;
+  width: 400px;
+} 
+
+.grid {
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
+.video-box {
+  padding: 10px;
+  margin: 10px 5px;
+}
+
+@media(max-width:1200px) {
+  .grid {
+    grid-template-columns: auto auto;
+  }
+}
+
+@media(max-width:815px) {
+  .grid {
+    grid-template-columns: auto;
+    justify-content: center;
+  }
+
+}
+
+@media(max-width:615px) {
+  .grid {
+    grid-template-columns: auto;
+    justify-content: center;
+  }
+
+  .video-box {
+    padding: 30px;
+    margin: 10px 5px;
+  }
+
+  iframe {
+    width: 250px;
+    height: 150px;
+  }
+
+  .student-info h2 {
+    font-size: 18px;
+  }
+}
+
+.flex {
+  display: flex;
+}
+.justify-center {
+  justify-content: center;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.grid-2 {
+  display: grid;
+  width: 100%;
+  grid-template-columns: auto auto auto auto auto;
+}
+
+.student {
+  border: 1px solid rgb(222, 215, 215);
+  width: 200px;
+  padding: 5px;
+  border-radius: 10px;
+  box-shadow: 0px 36px 67px -44px rgba(0,0,0,0.75);
+  margin-bottom: 30px;
+}
+
+.student-img {
+ width: 100%;
+ border-radius: 10px;
+}
+
+.student-name {
+  text-align: center;
+  font-size: 18px;
+  font-style: italic;
+  margin-top: 20px;
+  color: #7d7d7d;
+}
+
+@media(max-width:1200px) {
+  .grid-2 {
+    grid-template-columns: auto auto auto;
+  }
+}
+
+
+@media(max-width:672px) {
+  .grid-2 {
+    grid-template-columns: auto auto ;
+  }
+}
+
+@media(max-width:450px) {
+  .grid-2 {
+    justify-content: center;
+    grid-template-columns: auto;
+  }
+
+  .student {
+    border: 1px solid rgb(222, 215, 215);
+    width: 300px;
+  }
+}

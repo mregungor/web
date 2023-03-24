@@ -46,6 +46,14 @@ const sentences = [
     {
         name:"Albert Einstein",
         text:"Bütün bilim,her günkü düşüncenin mükemmel şekilde ıslah edilmesinden başka bir şey değildir."
+    },
+    {
+        name:"Anonim",
+        text:"Eğer hazır olana kadar beklersek, hayatımızın sonuna kadar bekliyor oluruz"
+    },
+    {
+        name:"Anonim",
+        text:"Paylaşmayı bilenler, mutlu kişilerdir..."
     }
 ]
 let indis = Math.floor(Math.random() * sentences.length)
@@ -53,21 +61,7 @@ let indis = Math.floor(Math.random() * sentences.length)
 
 //footer
 const navbar = `<header id="header">      
-<div class="container">
-    <div class="row">
-        <div class="col-sm-12 overflow">
-           <div class="social-icons pull-right">
-                <ul class="nav nav-pills">
-                    <li><a href=""><i class="fa fa-facebook"></i></a></li>
-                    <li><a href=""><i class="fa fa-twitter"></i></a></li>
-                    <li><a href=""><i class="fa fa-google-plus"></i></a></li>
-                    <li><a href=""><i class="fa fa-dribbble"></i></a></li>
-                    <li><a href=""><i class="fa fa-linkedin"></i></a></li>
-                </ul>
-            </div> 
-        </div>
-     </div>
-</div>
+
 <div class="navbar navbar-inverse" role="banner">
     <div class="container">
         <div class="navbar-header">
@@ -90,26 +84,23 @@ const navbar = `<header id="header">
                 <li ><a href="index.html">Ana Sayfa</a></li>
                 <li class="dropdown"><a href="#">Dersler <i class="fa fa-angle-down"></i></a>
                     <ul role="menu" class="sub-menu">
-                        <li><a href="ogrenci-asistanlar.html">Öğrenci Asistanlarımız</a></li>
-                        <li><a href="dersler.html">Dersler</a></li>
+                        <li><a href="veri_yapilari.html">Veri Yapıları</a></li>
+                        <li><a href="algoritma_ve_programlama.html">Algoritma Ve Programlama</a></li>
+                        <li><a href="oyun_programlamaya_giris.html">Oyun Programlamaya Giriş</a></li>
+                        <li><a href="oyun_programlama.html">Oyun Programlama</a></li>
                         <li><a href="programlama-dilleri.html">Programlama Dilleri</a></li>
-                        <li><a href="dersler_neuralnets.html">Neural Networks</a></li>
-                        <li><a href="service.html">Services</a></li>
-                        <li><a href="contact2.html">Contact Us</a></li>
                     </ul>
                 </li>                  
                 <li class="dropdown"><a href="#">Projeler <i class="fa fa-angle-down"></i></a>
                     <ul role="menu" class="sub-menu">
                         <li><a href="projeler.html">Projeler</a></li>
-                        <li><a href="">Scientific</a></li>
-                        <li><a href="">Game Development</a></li>
+                        <li><a href="oyun_tasarim.html">Oyun Tasarım</a></li>
                     </ul>
                 </li>
                 <li class="dropdown"><a href="#">Akademik <i class="fa fa-angle-down"></i></a>
                     <ul role="menu" class="sub-menu">
                         <li><a target="_blank" href="https://avesis.ksbu.edu.tr/emre.gungor/">Avensis</a></li>
-                        <li><a href="portfolio.html">Portfolio</a></li>
-                        <li><a href="portfolio-details.html">Portfolio Details</a></li>
+                        <li><a href="ogrenci-asistanlar.html">Asistan Öğrenciler</a></li>
                     </ul>
                 </li> 
                 <li class="dropdown"><a href="#">Derleyiciler<i class="fa fa-angle-down"></i></a>
