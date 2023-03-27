@@ -3,7 +3,7 @@ const AVP_2022_Images = [{"title":"AvP1_H12_1.png","href":"https://github.com//m
 const lightBoxDiv = document.querySelector('#lightBox')
 
 AVP_2022_Images.forEach(item => {
-    lightBoxDiv.innerHTML += ` <div class="slider_img" class='border' style="padding:10px;">
+    lightBoxDiv.innerHTML += ` <div class='border' style="padding:10px;">
                                     <a href="${item.href}/?raw=true">
                                         <img
                                         width="100%"
