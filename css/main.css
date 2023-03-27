@@ -2867,3 +2867,37 @@ span.stButton_gradient,
     width: 300px;
   }
 }
+
+/* algoritma ve programlama dersi ders notları için css */
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
+.note_link {
+  padding: 20px 10px;
+  color: white;
+  background-color: #dfb883;
+  font-size: 20px;
+  transition: all .4s;
+  margin-right: 20px;
+}
+
+.note_link:hover {
+  background-color: #dfb890;
+  color: grey;
+}
+
+@media(max-width:1000px) {
+  .grid-3 {
+    grid-template-columns: auto auto;
+  }
+}
+
+@media(max-width:672px) {
+  .grid-3 {
+    grid-template-columns: auto;
+  }
+}
+
