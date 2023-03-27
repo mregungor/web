@@ -9,8 +9,8 @@ AVP_2022_Images.forEach(item => {
                                         width="100%"
                                         src="${item.href}/?raw=true"
                                         data-bilderrahmen="gallery-02"
-                                        data-bilderrahmen-title="${item.title}"
-                                /></a>
-                                <p>${item.title}</p>
+                                        data-bilderrahmen-title="${item.title.split('.')[0]}"
+                                    /></a>
+                                    <p style="margin-top:20px; text-align:center">${item.title.split('.')[0]}</p>
                                 </div>`
 })
