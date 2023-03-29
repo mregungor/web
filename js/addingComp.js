@@ -73,8 +73,14 @@ const navbar = `<header id="header">
             </button>
 
             <a class="navbar-brand" href="index.html">
-                <div style="width:100px;">
-                    <img src="images/logo.png" alt="logo">
+                <div style="display:flex; flex-direction:column">
+                    <img " src="images/logo.png" alt="logo">
+                    <div style="display:flex; align-items:center; margin-top:2%;">
+                        <a href="https://www.scopus.com/authid/detail.uri?authorId=57191825606" target="_blank" ><img style="margin:5px;" width="30px" src="./images/ico/scopus.png" alt=""></a>
+                        <a href="https://orcid.org/0000-0003-4278-6294" target="_blank"><img style="margin:5px;" width="30px" src="./images/ico/orcid.png" alt=""></a>
+                        <a href="https://publons.com/wos-op/researcher/AAH-9274-2019" target="_blank"><img style="margin:5px;" width="30px" src="./images/ico/publons.png" alt=""></a>
+                        <a href="https://scholar.google.com.tr/citations?user=l79fuuYAAAAJ" target="_blank"><img style="margin:5px;" width="30px" src="./images/ico/google-academic.png" alt=""></a>
+                    </div>
                 </div>
             </a>
             
