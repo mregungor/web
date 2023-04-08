@@ -167,7 +167,7 @@ const footer = ` <footer id="footer" class="d-flex">
                                 
                                 <div class="col-sm-12">
                                     <div class="copyright-text text-center">
-                                        <p>&copy;  Emre GÜNGÖR 2023. All Rights Reserved. <br> Maintained By <a target="_blank" href="https://www.linkedin.com/in/seyit-y%C4%B1lmaz-456b44253/"><span style="font-weight:bold;">Mert Seyit Yılmaz.</span></a></p>
+                                        <p>&copy;  Emre GÜNGÖR 2023. All Rights Reserved. <br> Maintained By <a target="_blank" href="https://www.linkedin.com/in/mert-seyit/"><span style="font-weight:bold;">Mert Seyit Yılmaz.</span></a></p>
                                     </div>
                                 </div>
                             </div>
