@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Model Viewer</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="models/gallery.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            overflow: hidden;
+        }
+
+        #container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        #canvas-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            cursor: grab;
+        }
+
+        #canvas-container:active {
+            cursor: grabbing;
+        }
+
+        #controls {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            min-width: 280px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        #info {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            z-index: 100;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 15px;
+            max-width: 300px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .control-group {
+            margin-bottom: 15px;
+        }
+
+        .control-group:last-child {
+            margin-bottom: 0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            border: 2px dashed #4a90e2;
+            border-radius: 8px;
+            background: rgba(74, 144, 226, 0.1);
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        input[type="file"]:hover {
+            border-color: #357abd;
+            background: rgba(74, 144, 226, 0.2);
+        }
+
+        input[type="range"] {
+            width: 100%;
+            margin: 5px 0;
+        }
+
+        select, button {
+            width: 100%;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 8px;
+        }
+
+        select:hover, button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Fix dropdown options visibility */
+        select option {
+            background: #2c3e50;
+            color: white;
+            padding: 8px;
+        }
+
+        select option:hover {
+            background: #34495e;
+            color: #fff;
+        }
+
+        select option:checked {
+            background: #4a90e2;
+            color: white;
+        }
+
+        button {
+            background: linear-gradient(45deg, #4a90e2, #357abd);
+            font-weight: 500;
+        }
+
+        button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(74, 144, 226, 0.4);
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        input[type="checkbox"] {
+            width: auto;
+        }
+
+        #drop-zone {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 4px dashed transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 50;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        #drop-zone.active {
+            border-color: #4a90e2;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 200;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 20px 40px;
+            border-radius: 10px;
+            display: none;
+        }
+
+        .spinner {
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 3px solid #4a90e2;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error {
+            color: #ff6b6b;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .success {
+            color: #51cf66;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .instructions {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 10px;
+        }
+
+        code {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 11px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="canvas-container"></div>
+        
+        <div id="controls">
+            <div class="control-group">
+                <label>Select From Gallery</label>
+                <select id="modelGallery">
+                    <option value="">Choose a model...</option>
+                </select>
+                <div id="gallery-status"></div>
+            </div>
+            
+            <div class="control-group">
+                <label>Or Upload Your Own</label>
+                <input type="file" id="fileInput" accept=".obj,.stl,.ply" />
+                <div class="instructions">Supported: OBJ, STL, PLY</div>
+                <div id="file-status"></div>
+            </div>
+            
+            <div class="control-group">
+                <label>Background</label>
+                <select id="background">
+                    <option value="gradient">Gradient</option>
+                    <option value="dark">Dark</option>
+                    <option value="light">Light</option>
+                    <option value="environment">Environment</option>
+                </select>
+            </div>
+            
+            <div class="control-group">
+                <div class="checkbox-group">
+                    <input type="checkbox" id="wireframe">
+                    <label for="wireframe">Wireframe Mode</label>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="autoRotate">
+                    <label for="autoRotate">Auto Rotate</label>
+                </div>
+            </div>
+            
+            <div class="control-group">
+                <label>Lighting Intensity</label>
+                <input type="range" id="lightIntensity" min="0" max="2" step="0.1" value="1">
+            </div>
+            
+            <div class="control-group">
+                <button id="resetCamera">Reset Camera</button>
+                <button id="centerModel">Center Model</button>
+                <button id="fullscreen">Fullscreen</button>
+            </div>
+        </div>
+
+        <div id="info">
+            <h3>3D Model Viewer</h3>
+            <p>Upload your own files or configure a gallery of pre-loaded models.</p>
+            <div class="instructions">
+                <strong>Controls:</strong><br>
+                • Left drag: Rotate view<br>
+                • Right drag / Shift+drag: Pan model<br>
+                • Mouse wheel: Zoom in/out<br>
+                • Touch: Drag to rotate, pinch to zoom<br>
+                • Long touch: Pan model
+            </div>
+            <div id="model-info"></div>
+            <div class="instructions" style="margin-top: 10px; font-size: 11px; opacity: 0.8;">
+                <strong>Gallery Setup:</strong><br>
+                Create <code>models/gallery.js</code> with your model list<br>
+                Optional: <code>models/models.json</code> to override JS file<br>
+                Works both locally (with web server) and on GitHub Pages
+            </div>
+        </div>
+
+        <div id="drop-zone">
+            <div>Drop your 3D model here<br><small>or select from gallery above</small></div>
+        </div>
+
+        <div id="loading">
+            <div class="spinner"></div>
+            <div>Loading model...</div>
+        </div>
+    </div>
+
+    <script>
+        // Simple OBJ Loader implementation
+        class SimpleOBJLoader {
+            load(text) {
+                const vertices = [];
+                const faces = [];
+                const lines = text.split('\n');
+                
+                for (let line of lines) {
+                    line = line.trim();
+                    if (line.startsWith('v ')) {
+                        const parts = line.split(/\s+/);
+                        vertices.push(
+                            parseFloat(parts[1]),
+                            parseFloat(parts[2]),
+                            parseFloat(parts[3])
+                        );
+                    } else if (line.startsWith('f ')) {
+                        const parts = line.split(/\s+/);
+                        for (let i = 2; i < parts.length - 1; i++) {
+                            faces.push(
+                                parseInt(parts[1].split('/')[0]) - 1,
+                                parseInt(parts[i].split('/')[0]) - 1,
+                                parseInt(parts[i + 1].split('/')[0]) - 1
+                            );
+                        }
+                    }
+                }
+                
+                const geometry = new THREE.BufferGeometry();
+                geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+                geometry.setIndex(faces);
+                geometry.computeVertexNormals();
+                
+                return geometry;
+            }
+        }
+
+        // Simple STL Loader implementation
+        class SimpleSTLLoader {
+            load(buffer) {
+                const view = new DataView(buffer);
+                const faces = view.getUint32(80, true);
+                const vertices = [];
+                const normals = [];
+                
+                let offset = 84;
+                for (let i = 0; i < faces; i++) {
+                    // Normal vector
+                    const nx = view.getFloat32(offset, true);
+                    const ny = view.getFloat32(offset + 4, true);
+                    const nz = view.getFloat32(offset + 8, true);
+                    offset += 12;
+                    
+                    // Three vertices
+                    for (let j = 0; j < 3; j++) {
+                        vertices.push(
+                            view.getFloat32(offset, true),
+                            view.getFloat32(offset + 4, true),
+                            view.getFloat32(offset + 8, true)
+                        );
+                        normals.push(nx, ny, nz);
+                        offset += 12;
+                    }
+                    
+                    offset += 2; // Skip attribute byte count
+                }
+                
+                const geometry = new THREE.BufferGeometry();
+                geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+                geometry.setAttribute('normal', new THREE.Float32BufferAttribute(normals, 3));
+                
+                return geometry;
+            }
+        }
+
+        class ModelViewer {
+            constructor() {
+                this.scene = null;
+                this.camera = null;
+                this.renderer = null;
+                this.currentModel = null;
+                this.lights = [];
+                this.autoRotateEnabled = false;
+                
+                // Camera controls
+                this.cameraDistance = 10;
+                this.cameraRotationX = Math.PI * 0.1; // Slight downward angle
+                this.cameraRotationY = Math.PI * 0.25; // 45-degree angle
+                this.cameraTarget = new THREE.Vector3(0, 0, 0); // Center point for rotation/panning
+                this.isMouseDown = false;
+                this.isRightMouseDown = false;
+                this.mouseX = 0;
+                this.mouseY = 0;
+                
+                // Model gallery will be loaded from models/gallery.js
+                // Fallback to empty if gallery.js doesn't exist
+                this.modelGallery = window.MODEL_GALLERY || [];
+                
+                this.init();
+                this.setupEventListeners();
+                this.loadModelGallery(); // Load models from JSON file
+            }
+
+            init() {
+                // Scene setup
+                this.scene = new THREE.Scene();
+                
+                // Camera setup
+                this.camera = new THREE.PerspectiveCamera(
+                    75,
+                    window.innerWidth / window.innerHeight,
+                    0.1,
+                    1000
+                );
+                this.updateCameraPosition();
+
+                // Renderer setup
+                this.renderer = new THREE.WebGLRenderer({ 
+                    antialias: true,
+                    alpha: false
+                });
+                this.renderer.setSize(window.innerWidth, window.innerHeight);
+                this.renderer.shadowMap.enabled = true;
+                this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+                
+                document.getElementById('canvas-container').appendChild(this.renderer.domElement);
+
+                this.setupLighting();
+                this.setBackground('gradient');
+                this.setupCameraControls();
+                this.animate();
+            }
+
+            updateCameraPosition() {
+                const x = this.cameraDistance * Math.sin(this.cameraRotationY) * Math.cos(this.cameraRotationX);
+                const y = this.cameraDistance * Math.sin(this.cameraRotationX);
+                const z = this.cameraDistance * Math.cos(this.cameraRotationY) * Math.cos(this.cameraRotationX);
+                
+                this.camera.position.set(
+                    this.cameraTarget.x + x,
+                    this.cameraTarget.y + y,
+                    this.cameraTarget.z + z
+                );
+                this.camera.lookAt(this.cameraTarget);
+            }
+
+            setupCameraControls() {
+                const canvas = this.renderer.domElement;
+                
+                // Mouse controls
+                canvas.addEventListener('mousedown', (e) => {
+                    if (e.button === 0) { // Left mouse button
+                        this.isMouseDown = true;
+                    } else if (e.button === 2) { // Right mouse button
+                        this.isRightMouseDown = true;
+                    }
+                    this.mouseX = e.clientX;
+                    this.mouseY = e.clientY;
+                    e.preventDefault();
+                });
+
+                canvas.addEventListener('mousemove', (e) => {
+                    if (!this.isMouseDown && !this.isRightMouseDown) return;
+                    
+                    const deltaX = e.clientX - this.mouseX;
+                    const deltaY = e.clientY - this.mouseY;
+                    
+                    if (this.isMouseDown && !e.shiftKey) {
+                        // Rotate camera
+                        this.cameraRotationY += deltaX * 0.01;
+                        this.cameraRotationX += deltaY * 0.01;
+                        
+                        // Limit vertical rotation
+                        this.cameraRotationX = Math.max(-Math.PI/2 + 0.1, Math.min(Math.PI/2 - 0.1, this.cameraRotationX));
+                        
+                        this.updateCameraPosition();
+                    } else if (this.isRightMouseDown || (this.isMouseDown && e.shiftKey)) {
+                        // Pan camera
+                        const panSpeed = this.cameraDistance * 0.001;
+                        
+                        // Calculate right and up vectors relative to camera
+                        const cameraDirection = new THREE.Vector3();
+                        this.camera.getWorldDirection(cameraDirection);
+                        const right = new THREE.Vector3();
+                        right.crossVectors(cameraDirection, this.camera.up).normalize();
+                        const up = new THREE.Vector3();
+                        up.crossVectors(right, cameraDirection).normalize();
+                        
+                        // Apply panning
+                        right.multiplyScalar(-deltaX * panSpeed);
+                        up.multiplyScalar(deltaY * panSpeed);
+                        
+                        this.cameraTarget.add(right).add(up);
+                        this.updateCameraPosition();
+                    }
+                    
+                    this.mouseX = e.clientX;
+                    this.mouseY = e.clientY;
+                    e.preventDefault();
+                });
+
+                canvas.addEventListener('mouseup', (e) => {
+                    if (e.button === 0) {
+                        this.isMouseDown = false;
+                    } else if (e.button === 2) {
+                        this.isRightMouseDown = false;
+                    }
+                });
+
+                canvas.addEventListener('mouseleave', () => {
+                    this.isMouseDown = false;
+                    this.isRightMouseDown = false;
+                });
+
+                // Disable context menu on right click
+                canvas.addEventListener('contextmenu', (e) => {
+                    e.preventDefault();
+                });
+
+                // Wheel zoom
+                canvas.addEventListener('wheel', (e) => {
+                    const zoomFactor = e.deltaY > 0 ? 1.1 : 0.9;
+                    this.cameraDistance *= zoomFactor;
+                    this.cameraDistance = Math.max(1, Math.min(100, this.cameraDistance));
+                    this.updateCameraPosition();
+                    e.preventDefault();
+                });
+
+                // Touch controls
+                let lastTouchDistance = 0;
+                let lastTouchX = 0;
+                let lastTouchY = 0;
+                let touchStartTime = 0;
+
+                canvas.addEventListener('touchstart', (e) => {
+                    touchStartTime = Date.now();
+                    if (e.touches.length === 1) {
+                        lastTouchX = e.touches[0].clientX;
+                        lastTouchY = e.touches[0].clientY;
+                    } else if (e.touches.length === 2) {
+                        const dx = e.touches[0].clientX - e.touches[1].clientX;
+                        const dy = e.touches[0].clientY - e.touches[1].clientY;
+                        lastTouchDistance = Math.sqrt(dx * dx + dy * dy);
+                    }
+                    e.preventDefault();
+                });
+
+                canvas.addEventListener('touchmove', (e) => {
+                    const touchDuration = Date.now() - touchStartTime;
+                    
+                    if (e.touches.length === 1) {
+                        const deltaX = e.touches[0].clientX - lastTouchX;
+                        const deltaY = e.touches[0].clientY - lastTouchY;
+                        
+                        if (touchDuration > 500) { // Long press = pan
+                            const panSpeed = this.cameraDistance * 0.001;
+                            const cameraDirection = new THREE.Vector3();
+                            this.camera.getWorldDirection(cameraDirection);
+                            const right = new THREE.Vector3();
+                            right.crossVectors(cameraDirection, this.camera.up).normalize();
+                            const up = new THREE.Vector3();
+                            up.crossVectors(right, cameraDirection).normalize();
+                            
+                            right.multiplyScalar(-deltaX * panSpeed);
+                            up.multiplyScalar(deltaY * panSpeed);
+                            
+                            this.cameraTarget.add(right).add(up);
+                            this.updateCameraPosition();
+                        } else { // Normal touch = rotate
+                            this.cameraRotationY += deltaX * 0.01;
+                            this.cameraRotationX += deltaY * 0.01;
+                            this.cameraRotationX = Math.max(-Math.PI/2 + 0.1, Math.min(Math.PI/2 - 0.1, this.cameraRotationX));
+                            this.updateCameraPosition();
+                        }
+                        
+                        lastTouchX = e.touches[0].clientX;
+                        lastTouchY = e.touches[0].clientY;
+                    } else if (e.touches.length === 2) {
+                        const dx = e.touches[0].clientX - e.touches[1].clientX;
+                        const dy = e.touches[0].clientY - e.touches[1].clientY;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        
+                        const zoomFactor = distance / lastTouchDistance;
+                        this.cameraDistance /= zoomFactor;
+                        this.cameraDistance = Math.max(1, Math.min(100, this.cameraDistance));
+                        this.updateCameraPosition();
+                        
+                        lastTouchDistance = distance;
+                    }
+                    e.preventDefault();
+                });
+            }
+
+            // Check if running locally and show appropriate message
+            checkLocalEnvironment() {
+                if (window.location.protocol === 'file:') {
+                    const statusElement = document.getElementById('gallery-status');
+                    statusElement.innerHTML = `
+                        <div class="error" style="margin: 5px 0; padding: 8px; background: rgba(255,107,107,0.2); border-radius: 5px; font-size: 12px;">
+                            <strong>⚠️ Local file access blocked</strong><br>
+                            Use a web server for gallery features:<br>
+                            <code>python -m http.server 8000</code><br>
+                            Then open: <code>http://localhost:8000</code>
+                        </div>
+                    `;
+                    return true; // Is local
+                }
+                return false; // Not local
+            }
+
+            async loadModelGallery() {
+                const statusElement = document.getElementById('gallery-status');
+                
+                // Check if running locally and warn user
+                if (this.checkLocalEnvironment()) {
+                    console.warn('Running locally - 3D model loading will be blocked by CORS');
+                    return; // Don't continue with gallery loading
+                }
+                
+                // Start with gallery from models/gallery.js (loaded in HTML head)
+                this.modelGallery = window.MODEL_GALLERY || [];
+                
+                try {
+                    // Try to load optional JSON override
+                    const response = await fetch('models/models.json');
+                    
+                    if (response.ok) {
+                        const jsonText = await response.text();
+                        console.log('JSON override found');
+                        
+                        try {
+                            const jsonGallery = JSON.parse(jsonText);
+                            // JSON found and valid - use it instead of JS gallery
+                            this.modelGallery = jsonGallery;
+                            this.populateModelGallery();
+                            this.showGallerySuccess(`Gallery loaded (${this.modelGallery.length} models from JSON)`);
+                            console.log('Using JSON gallery override:', this.modelGallery);
+                            return;
+                        } catch (parseError) {
+                            console.error('JSON parsing error:', parseError);
+                            this.showGalleryError(`JSON format error. Using JS gallery instead.`);
+                        }
+                    }
+                } catch (error) {
+                    // JSON not found or can't load - use JS gallery (normal)
+                    console.log('Using JS gallery (JSON not found or inaccessible)');
+                }
+                
+                // Use gallery from models/gallery.js
+                this.populateModelGallery();
+                if (this.modelGallery.length > 0) {
+                    this.showGallerySuccess(`Gallery loaded (${this.modelGallery.length} models)`);
+                } else {
+                    statusElement.innerHTML = '<div style="color: #888; font-size: 12px;">No models configured. Create models/gallery.js file.</div>';
+                }
+            }
+
+            populateModelGallery() {
+                const select = document.getElementById('modelGallery');
+                
+                // Clear existing options
+                select.innerHTML = '<option value="">Choose a model...</option>';
+                
+                if (this.modelGallery.length === 0) {
+                    const option = document.createElement('option');
+                    option.value = "";
+                    option.textContent = "No models configured yet";
+                    option.disabled = true;
+                    select.appendChild(option);
+                    return;
+                }
+                
+                this.modelGallery.forEach((model, index) => {
+                    const option = document.createElement('option');
+                    option.value = index;
+                    option.textContent = model.name;
+                    option.title = model.description;
+                    select.appendChild(option);
+                });
+                
+                console.log(`Added ${this.modelGallery.length} models to dropdown`);
+            }
+
+            async loadModelFromURL(url, filename) {
+                this.showLoading(true);
+                
+                try {
+                    // Console logging for developers
+                    console.log('Loading model:', url);
+                    
+                    const response = await fetch(url);
+                    
+                    if (!response.ok) {
+                        const errorDetails = `HTTP ${response.status} ${response.statusText}`;
+                        console.error('Fetch failed:', errorDetails, 'URL:', url);
+                        
+                        let userMessage;
+                        if (response.status === 404) {
+                            userMessage = `File "${filename}" not found. Check if it exists in the models/ folder.`;
+                        } else {
+                            userMessage = `Cannot load "${filename}" (${response.status}). Check file accessibility.`;
+                        }
+                        
+                        throw new Error(userMessage);
+                    }
+                    
+                    const arrayBuffer = await response.arrayBuffer();
+                    const fileExtension = filename.toLowerCase().split('.').pop();
+                    
+                    console.log('File loaded successfully, size:', arrayBuffer.byteLength, 'bytes');
+                    
+                    // Remove previous model
+                    if (this.currentModel) {
+                        this.scene.remove(this.currentModel);
+                    }
+
+                    let geometry;
+                    
+                    switch(fileExtension) {
+                        case 'obj':
+                            const objText = new TextDecoder().decode(arrayBuffer);
+                            const objLoader = new SimpleOBJLoader();
+                            geometry = objLoader.load(objText);
+                            break;
+                        case 'stl':
+                            const stlLoader = new SimpleSTLLoader();
+                            geometry = stlLoader.load(arrayBuffer);
+                            break;
+                        case 'ply':
+                            this.showGalleryError('PLY format not yet supported');
+                            this.showLoading(false);
+                            return;
+                        default:
+                            throw new Error(`Unsupported file format: ${fileExtension}`);
+                    }
+
+                    const material = new THREE.MeshPhongMaterial({ 
+                        color: 0x00aa88,
+                        shininess: 100,
+                        side: THREE.DoubleSide
+                    });
+                    
+                    this.currentModel = new THREE.Mesh(geometry, material);
+                    this.finalizeModel();
+                    this.showGallerySuccess(`Loaded: ${filename}`);
+                    this.showLoading(false);
+                    
+                } catch (error) {
+                    console.error('Model loading error:', error);
+                    this.showGalleryError(error.message);
+                    this.showLoading(false);
+                }
+            }
+
+            setupLighting() {
+                // Ambient light
+                const ambientLight = new THREE.AmbientLight(0x404040, 0.6);
+                this.scene.add(ambientLight);
+                this.lights.push(ambientLight);
+
+                // Directional light
+                const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+                directionalLight.position.set(10, 10, 5);
+                directionalLight.castShadow = true;
+                this.scene.add(directionalLight);
+                this.lights.push(directionalLight);
+
+                // Point lights
+                const pointLight1 = new THREE.PointLight(0xffffff, 0.5);
+                pointLight1.position.set(-10, 10, -10);
+                this.scene.add(pointLight1);
+                this.lights.push(pointLight1);
+
+                const pointLight2 = new THREE.PointLight(0xffffff, 0.5);
+                pointLight2.position.set(10, -10, 10);
+                this.scene.add(pointLight2);
+                this.lights.push(pointLight2);
+            }
+
+            setBackground(type) {
+                switch(type) {
+                    case 'gradient':
+                        this.scene.background = new THREE.Color(0x2c3e50);
+                        break;
+                    case 'dark':
+                        this.scene.background = new THREE.Color(0x000000);
+                        break;
+                    case 'light':
+                        this.scene.background = new THREE.Color(0xffffff);
+                        break;
+                    case 'environment':
+                        this.scene.background = new THREE.Color(0x87CEEB);
+                        break;
+                }
+            }
+
+            loadModel(file) {
+                this.showLoading(true);
+                
+                const fileName = file.name.toLowerCase();
+                const fileExtension = fileName.split('.').pop();
+                
+                if (this.currentModel) {
+                    this.scene.remove(this.currentModel);
+                }
+
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    try {
+                        let geometry;
+                        
+                        switch(fileExtension) {
+                            case 'obj':
+                                const objText = new TextDecoder().decode(event.target.result);
+                                const objLoader = new SimpleOBJLoader();
+                                geometry = objLoader.load(objText);
+                                break;
+                            case 'stl':
+                                const stlLoader = new SimpleSTLLoader();
+                                geometry = stlLoader.load(event.target.result);
+                                break;
+                            case 'ply':
+                                this.showError('PLY format not yet supported');
+                                this.showLoading(false);
+                                return;
+                            default:
+                                throw new Error(`Unsupported file format: ${fileExtension}`);
+                        }
+
+                        const material = new THREE.MeshPhongMaterial({ 
+                            color: 0x00aa88,
+                            shininess: 100,
+                            side: THREE.DoubleSide
+                        });
+                        
+                        this.currentModel = new THREE.Mesh(geometry, material);
+                        this.finalizeModel();
+                        this.showSuccess(`Loaded: ${fileName}`);
+                        this.showLoading(false);
+                        
+                    } catch (error) {
+                        this.showError(`Error loading model: ${error.message}`);
+                        this.showLoading(false);
+                    }
+                };
+
+                reader.readAsArrayBuffer(file);
+            }
+
+            finalizeModel() {
+                // Remove any existing model first
+                if (this.scene.children.find(child => child === this.currentModel)) {
+                    this.scene.remove(this.currentModel);
+                }
+                
+                // Add model to scene first for accurate bounding box calculation
+                this.scene.add(this.currentModel);
+                
+                // Calculate the model's bounding box and center
+                const box = new THREE.Box3().setFromObject(this.currentModel);
+                const center = box.getCenter(new THREE.Vector3());
+                const size = box.getSize(new THREE.Vector3());
+                
+                // Move model so its center is at world origin
+                this.currentModel.position.copy(center).negate();
+                
+                // Calculate optimal scale to fit in view with padding
+                const maxDim = Math.max(size.x, size.y, size.z);
+                const scale = 4 / maxDim;
+                this.currentModel.scale.setScalar(scale);
+                
+                // IMPORTANT: After scaling, recalculate the actual visual center
+                // The model is now centered at origin, so camera should rotate around (0,0,0)
+                this.currentModel.updateMatrixWorld(true);
+                const finalBox = new THREE.Box3().setFromObject(this.currentModel);
+                const finalCenter = finalBox.getCenter(new THREE.Vector3());
+                
+                // Set camera target to the actual visual center of the scaled model
+                this.cameraTarget.copy(finalCenter);
+                
+                // Set optimal camera distance and angle for nice initial view
+                this.cameraDistance = Math.max(6, maxDim * 1.2 * scale);
+                this.cameraRotationX = Math.PI * 0.1; // Slight downward angle
+                this.cameraRotationY = Math.PI * 0.25; // 45-degree angle
+                
+                // Enable shadows
+                this.currentModel.castShadow = true;
+                this.currentModel.receiveShadow = true;
+                
+                // Update camera position with new settings
+                this.updateCameraPosition();
+                this.updateModelInfo(size, this.currentModel);
+            }
+
+            updateModelInfo(size, model) {
+                let vertexCount = 0;
+                let faceCount = 0;
+                
+                if (model.geometry) {
+                    if (model.geometry.attributes.position) {
+                        vertexCount = model.geometry.attributes.position.count;
+                    }
+                    if (model.geometry.index) {
+                        faceCount = model.geometry.index.count / 3;
+                    }
+                }
+                
+                document.getElementById('model-info').innerHTML = `
+                    <hr style="margin: 10px 0; border: 1px solid rgba(255,255,255,0.2);">
+                    <strong>Model Info:</strong><br>
+                    Vertices: ${vertexCount.toLocaleString()}<br>
+                    Faces: ${Math.floor(faceCount).toLocaleString()}<br>
+                    Size: ${size.x.toFixed(2)} × ${size.y.toFixed(2)} × ${size.z.toFixed(2)}
+                `;
+            }
+
+            setupEventListeners() {
+                // Model gallery selection
+                document.getElementById('modelGallery').addEventListener('change', (e) => {
+                    const selectedIndex = e.target.value;
+                    if (selectedIndex !== '') {
+                        const selectedModel = this.modelGallery[selectedIndex];
+                        console.log('Loading model:', selectedModel);
+                        this.loadModelFromURL(selectedModel.file, selectedModel.file.split('/').pop());
+                    }
+                });
+
+                // File input
+                document.getElementById('fileInput').addEventListener('change', (e) => {
+                    if (e.target.files[0]) {
+                        // Reset gallery selection when user uploads a file
+                        document.getElementById('modelGallery').value = '';
+                        this.loadModel(e.target.files[0]);
+                    }
+                });
+
+                // Background selector
+                document.getElementById('background').addEventListener('change', (e) => {
+                    this.setBackground(e.target.value);
+                });
+
+                // Wireframe toggle
+                document.getElementById('wireframe').addEventListener('change', (e) => {
+                    if (this.currentModel && this.currentModel.material) {
+                        this.currentModel.material.wireframe = e.target.checked;
+                    }
+                });
+
+                // Auto rotate toggle
+                document.getElementById('autoRotate').addEventListener('change', (e) => {
+                    this.autoRotateEnabled = e.target.checked;
+                });
+
+                // Light intensity
+                document.getElementById('lightIntensity').addEventListener('input', (e) => {
+                    const intensity = parseFloat(e.target.value);
+                    this.lights.forEach(light => {
+                        if (light.isDirectionalLight || light.isPointLight) {
+                            light.intensity = intensity;
+                        }
+                    });
+                });
+
+                // Reset camera
+                document.getElementById('resetCamera').addEventListener('click', () => {
+                    this.cameraDistance = 10;
+                    this.cameraRotationX = Math.PI * 0.1; // Nice default angle
+                    this.cameraRotationY = Math.PI * 0.25; // 45-degree view
+                    this.cameraTarget.set(0, 0, 0);
+                    this.updateCameraPosition();
+                });
+
+                // Center model
+                document.getElementById('centerModel').addEventListener('click', () => {
+                    if (this.currentModel) {
+                        // Recalculate center and fit model  
+                        this.currentModel.updateMatrixWorld(true);
+                        const box = new THREE.Box3().setFromObject(this.currentModel);
+                        const center = box.getCenter(new THREE.Vector3());
+                        const size = box.getSize(new THREE.Vector3());
+                        
+                        // Move model so its visual center is at origin
+                        this.currentModel.position.sub(center);
+                        
+                        // Update matrix after position change
+                        this.currentModel.updateMatrixWorld(true);
+                        
+                        // Recalculate the final center after positioning
+                        const finalBox = new THREE.Box3().setFromObject(this.currentModel);
+                        const finalCenter = finalBox.getCenter(new THREE.Vector3());
+                        
+                        // Set camera target to the actual visual center
+                        this.cameraTarget.copy(finalCenter);
+                        
+                        // Adjust camera distance and angle for optimal view
+                        const maxDim = Math.max(size.x, size.y, size.z);
+                        this.cameraDistance = Math.max(6, maxDim * 1.2);
+                        this.cameraRotationX = Math.PI * 0.1;
+                        this.cameraRotationY = Math.PI * 0.25;
+                        
+                        this.updateCameraPosition();
+                    }
+                });
+
+                // Fullscreen
+                document.getElementById('fullscreen').addEventListener('click', () => {
+                    if (!document.fullscreenElement) {
+                        document.documentElement.requestFullscreen();
+                    } else {
+                        document.exitFullscreen();
+                    }
+                });
+
+                // Drag and drop
+                this.setupDragAndDrop();
+
+                // Window resize
+                window.addEventListener('resize', () => {
+                    this.camera.aspect = window.innerWidth / window.innerHeight;
+                    this.camera.updateProjectionMatrix();
+                    this.renderer.setSize(window.innerWidth, window.innerHeight);
+                });
+            }
+
+            setupDragAndDrop() {
+                const dropZone = document.getElementById('drop-zone');
+                
+                ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                    document.addEventListener(eventName, (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                    });
+                });
+
+                document.addEventListener('dragenter', () => {
+                    dropZone.classList.add('active');
+                });
+
+                document.addEventListener('dragleave', (e) => {
+                    if (!e.relatedTarget) {
+                        dropZone.classList.remove('active');
+                    }
+                });
+
+                document.addEventListener('drop', (e) => {
+                    dropZone.classList.remove('active');
+                    const files = e.dataTransfer.files;
+                    if (files.length > 0) {
+                        this.loadModel(files[0]);
+                    }
+                });
+            }
+
+            showGalleryError(message) {
+                const status = document.getElementById('gallery-status');
+                status.innerHTML = `<div class="error" style="font-size: 12px;">${message}</div>`;
+                setTimeout(() => status.innerHTML = '', 5000);
+            }
+
+            showGallerySuccess(message) {
+                const status = document.getElementById('gallery-status');
+                status.innerHTML = `<div class="success" style="font-size: 12px;">${message}</div>`;
+                setTimeout(() => status.innerHTML = '', 3000);
+            }
+
+            showLoading(show) {
+                document.getElementById('loading').style.display = show ? 'block' : 'none';
+            }
+
+            showError(message) {
+                const status = document.getElementById('file-status');
+                status.innerHTML = `<div class="error">${message}</div>`;
+                setTimeout(() => status.innerHTML = '', 5000);
+            }
+
+            showSuccess(message) {
+                const status = document.getElementById('file-status');
+                status.innerHTML = `<div class="success">${message}</div>`;
+                setTimeout(() => status.innerHTML = '', 3000);
+            }
+
+            animate() {
+                requestAnimationFrame(() => this.animate());
+
+                // Auto rotate
+                if (this.autoRotateEnabled) {
+                    this.cameraRotationY += 0.005;
+                    this.updateCameraPosition();
+                }
+
+                this.renderer.render(this.scene, this.camera);
+            }
+        }
+
+        // Initialize the viewer when the page loads
+        window.addEventListener('load', () => {
+            new ModelViewer();
+        });
+    </script>
+</body>
+</html>
